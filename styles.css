@@ -43,8 +43,10 @@
   --page-deep: #f4efe7;
   --panel: rgba(255, 253, 249, 0.88);
   --panel-solid: #fdfaf5;
-  --figure-paper: #f7f2ea;
-  --figure-paper-deep: #f1ebe2;
+  --figure-paper: #f8f4ed;
+  --figure-paper-deep: #f4eee5;
+  --figure-glow: rgba(255, 255, 255, 0.18);
+  --figure-line: rgba(179, 160, 136, 0.12);
   --ink: #1b1815;
   --muted: #635d55;
   --line: rgba(27, 24, 21, 0.1);
@@ -383,9 +385,9 @@ h1 span {
   border: 0;
   border-radius: 0;
   background:
-    radial-gradient(circle at 50% 34%, rgba(255, 255, 255, 0.42), transparent 56%),
+    radial-gradient(circle at 50% 20%, var(--figure-glow), transparent 62%),
     linear-gradient(180deg, var(--figure-paper) 0%, var(--figure-paper-deep) 100%);
-  box-shadow: none;
+  box-shadow: inset 0 0 0 1px var(--figure-line);
 }
 
 .media-frame img {
@@ -395,14 +397,14 @@ h1 span {
   height: 100%;
   object-fit: contain;
   mix-blend-mode: multiply;
-  filter: drop-shadow(0 16px 28px rgba(62, 49, 34, 0.08)) saturate(0.98);
+  filter: drop-shadow(0 14px 24px rgba(62, 49, 34, 0.07)) saturate(0.96);
 }
 
 .artboard-frame {
   overflow: hidden;
   border-radius: 0;
   background:
-    radial-gradient(circle at 50% 34%, rgba(255, 255, 255, 0.38), transparent 56%),
+    radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.14), transparent 62%),
     linear-gradient(180deg, var(--figure-paper) 0%, var(--figure-paper-deep) 100%);
 }
 
@@ -410,7 +412,7 @@ h1 span {
   border-radius: 0;
   clip-path: inset(0 0 1px 0 round 0);
   mix-blend-mode: multiply;
-  filter: drop-shadow(0 16px 28px rgba(62, 49, 34, 0.06)) saturate(0.98);
+  filter: drop-shadow(0 14px 24px rgba(62, 49, 34, 0.06)) saturate(0.96);
 }
 
 .figure-caption {
@@ -952,9 +954,11 @@ h1 span {
   border-radius: 28px;
   isolation: isolate;
   background:
-    radial-gradient(circle at 50% 26%, rgba(255, 255, 255, 0.44), transparent 52%),
+    radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.16), transparent 58%),
     linear-gradient(180deg, var(--figure-paper) 0%, var(--figure-paper-deep) 100%);
-  box-shadow: 0 28px 78px rgba(18, 17, 15, 0.24);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 28px 78px rgba(18, 17, 15, 0.24);
 }
 
 .lightbox-figure img {
