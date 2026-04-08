@@ -587,11 +587,33 @@
             <div class="bibtex-panel reveal" id="citation-block">
               <div class="panel-head">
                 <span class="section-kicker">BibTeX</span>
-                <button class="copy-button" type="button" data-copy-target="bibtex-snippet">
-                  Copy
-                </button>
+                <div class="panel-actions">
+                  <div class="bibtex-toggle" role="tablist" aria-label="BibTeX variant">
+                    <button
+                      class="bibtex-tab is-active"
+                      type="button"
+                      role="tab"
+                      aria-selected="true"
+                      data-bibtex-tab="acl"
+                    >
+                      ACL
+                    </button>
+                    <button
+                      class="bibtex-tab"
+                      type="button"
+                      role="tab"
+                      aria-selected="false"
+                      data-bibtex-tab="arxiv"
+                    >
+                      arXiv
+                    </button>
+                  </div>
+                  <button class="copy-button" type="button" data-copy-target="bibtex-snippet-acl">
+                    Copy
+                  </button>
+                </div>
               </div>
-              <pre id="bibtex-snippet"><code>@inproceedings{hua-etal-2026-unleashing,
+              <pre class="bibtex-snippet is-active" id="bibtex-snippet-acl"><code>@inproceedings{hua-etal-2026-unleashing,
   title = {Unleashing Spatial Reasoning in Multimodal Large Language Models via Textual Representation Guided Reasoning},
   author = {Hua, Jiacheng and Yin, Yishu and Wu, Yuhang and Wang, Tai and Huang, Yifei and Liu, Miao},
   booktitle = {Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
@@ -600,6 +622,15 @@
   address = {San Diego, California, USA},
   publisher = {Association for Computational Linguistics},
   note = {To appear}
+}</code></pre>
+              <pre class="bibtex-snippet" id="bibtex-snippet-arxiv" hidden><code>@misc{hua2026unleashingspatialreasoningmultimodal,
+      title={Unleashing Spatial Reasoning in Multimodal Large Language Models via Textual Representation Guided Reasoning},
+      author={Jiacheng Hua and Yishu Yin and Yuhang Wu and Tai Wang and Yifei Huang and Miao Liu},
+      year={2026},
+      eprint={2603.23404},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2603.23404},
 }</code></pre>
             </div>
           </div>

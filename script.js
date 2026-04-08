@@ -223,8 +223,47 @@ function setupCopyButtons() {
   });
 }
 
+function setupBibtexToggle() {
+  const tabs = document.querySelectorAll("[data-bibtex-tab]");
+  const snippets = document.querySelectorAll(".bibtex-snippet");
+  const copyButton = document.querySelector(".bibtex-panel .copy-button");
+
+  if (!tabs.length || !snippets.length || !copyButton) {
+    return;
+  }
+
+  function activate(key) {
+    tabs.forEach((tab) => {
+      const isActive = tab.dataset.bibtexTab === key;
+      tab.classList.toggle("is-active", isActive);
+      tab.setAttribute("aria-selected", isActive ? "true" : "false");
+    });
+
+    snippets.forEach((snippet) => {
+      const isActive = snippet.id === `bibtex-snippet-${key}`;
+      snippet.hidden = !isActive;
+      snippet.classList.toggle("is-active", isActive);
+    });
+
+    copyButton.setAttribute("data-copy-target", `bibtex-snippet-${key}`);
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const key = tab.dataset.bibtexTab;
+
+      if (!key) {
+        return;
+      }
+
+      activate(key);
+    });
+  });
+}
+
 setupArxivLinks();
 setupReveal();
 setupMetricAnimations();
 setupLightbox();
 setupCopyButtons();
+setupBibtexToggle();
