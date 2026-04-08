@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TRACE | ACL 2026 Main</title>
+    <meta
+      name="description"
+      content="Project page for TRACE: Unleashing Spatial Reasoning in Multimodal Large Language Models via Textual Representation Guided Reasoning."
+    />
+    <link rel="icon" href="assets/brand/trace-favicon.svg" type="image/svg+xml" />
+    <script>
+      document.documentElement.classList.add("has-js");
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top">TRACE</a>
+        <nav class="site-nav" aria-label="Section navigation">
+          <a href="#overview">Overview</a>
+          <a href="#method">Method</a>
+          <a href="#results">Results</a>
+          <a href="#gallery">Figures</a>
+          <a href="#citation">Citation</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero section">
+        <div class="container hero-inner">
+          <div class="hero-copy reveal">
+            <div class="hero-meta-row">
+              <a
+                class="eyebrow eyebrow-primary"
+                href="https://2026.aclweb.org/"
+                target="_blank"
+                rel="noreferrer"
+                >ACL 2026 Main</a
+              >
+              <span class="eyebrow subdued">Project Page</span>
+            </div>
+            <p class="acronym-line">
+              TRACE = Textual Representation of Allocentric Context from Egocentric Video
+            </p>
+            <h1>
+              <span>Unleashing Spatial Reasoning</span>
+              <span>in Multimodal Large Language Models</span>
+              <span>via Textual Representation</span>
+              <span>Guided Reasoning</span>
+            </h1>
+            <p class="hero-summary">
+              TRACE gives multimodal models a structured allocentric trace to
+              reason over, rather than forcing 3D spatial understanding to emerge
+              implicitly from raw egocentric video.
+            </p>
+
+            <div class="hero-actions">
+              <a
+                class="button button-primary"
+                href="assets/paper/trace_acl2026.pdf"
+                target="_blank"
+                rel="noreferrer"
+                >Paper</a
+              >
+              <a class="button button-secondary" href="#citation">BibTeX</a>
+              <a
+                class="button button-secondary js-arxiv"
+                href=""
+                target="_blank"
+                rel="noreferrer"
+                hidden
+                >arXiv</a
+              >
+            </div>
+
+            <div class="author-block">
+              <p class="author-line">
+                <a href="https://fleurs03.github.io/" target="_blank" rel="noreferrer">Jiacheng Hua</a><sup>1,2</sup>,
+                Yishu Yin<sup>1</sup>,
+                <a href="https://wuyuhang05.github.io/" target="_blank" rel="noreferrer">Yuhang Wu</a><sup>1</sup>,
+                <a href="https://tai-wang.github.io/" target="_blank" rel="noreferrer">Tai Wang</a><sup>2</sup>,
+                <a href="https://hyf015.github.io/" target="_blank" rel="noreferrer">Yifei Huang</a><sup>3,2</sup>,
+                <a href="https://aptx4869lm.github.io/" target="_blank" rel="noreferrer">Miao Liu</a><sup>1†</sup>
+              </p>
+              <p class="affiliation-line">
+                <span><sup>1</sup> College of AI, Tsinghua University</span>
+                <span><sup>2</sup> Shanghai Artificial Intelligence Laboratory</span>
+                <span><sup>3</sup> The University of Tokyo</span>
+              </p>
+            </div>
+
+            <div class="hero-abstract">
+              <span class="section-kicker">Abstract</span>
+              <p>
+                Existing Multimodal Large Language Models (MLLMs) struggle with
+                3D spatial reasoning because they fail to construct structured
+                abstractions of the environment depicted in video. TRACE
+                introduces a prompting method that elicits a text-based
+                allocentric representation of the scene as an intermediate
+                reasoning trace, encoding meta-context, camera trajectories, and
+                grounded object entities before spatial question answering.
+                Experiments on VSI-Bench and OST-Bench show consistent gains
+                over prior prompting strategies across diverse MLLM backbones,
+                while ablations and detailed analyses reveal the remaining
+                bottlenecks of 3D spatial reasoning in MLLMs.
+              </p>
+            </div>
+          </div>
+
+          <figure class="hero-figure reveal">
+            <div class="media-frame artboard-frame" style="--ratio: 7938 / 4043;">
+              <img
+                src="assets/figures/teaser.png"
+                alt="TRACE teaser figure showing the challenge of spatial reasoning from egocentric video and the TRACE representation."
+                width="7938"
+                height="4043"
+                loading="eager"
+              />
+            </div>
+            <figcaption class="figure-caption">
+              <span class="caption-label">Teaser</span>
+              <p>
+                TRACE builds a room-level textual representation before answer
+                generation, making spatial reasoning explicit rather than implicit.
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="overview-band">
+        <div class="container">
+          <div class="band-grid reveal">
+            <article class="band-cell">
+              <span class="band-label">Why it matters</span>
+              <p>Existing MLLMs often fail to build coherent 3D abstractions from egocentric video.</p>
+            </article>
+            <article class="band-cell">
+              <span class="band-label">What TRACE changes</span>
+              <p>It replaces loose reasoning text with a structured spatial interface that models can query.</p>
+            </article>
+            <article class="band-cell">
+              <span class="band-label">What we observe</span>
+              <p>Performance improves across proprietary and open backbones on both VSI-Bench and OST-Bench.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="overview">
+        <div class="container">
+          <div class="section-heading reveal">
+            <span class="section-kicker">Overview</span>
+            <h2>Text as a Spatial Interface</h2>
+          </div>
+
+          <div class="overview-grid">
+            <div class="overview-prose reveal">
+              <p class="lead">
+                TRACE turns egocentric video into a structured allocentric trace
+                that multimodal models can actually reason over.
+              </p>
+              <div class="overview-points">
+                <article class="overview-point">
+                  <span class="overview-label">Problem</span>
+                  <p>
+                    Existing MLLMs often fail to maintain a stable 3D world model
+                    from egocentric video, so spatial reasoning remains brittle and implicit.
+                  </p>
+                </article>
+                <article class="overview-point">
+                  <span class="overview-label">Approach</span>
+                  <p>
+                    TRACE elicits an intermediate text representation that
+                    explicitly records room topology, camera motion, and grounded entities.
+                  </p>
+                </article>
+                <article class="overview-point">
+                  <span class="overview-label">Outcome</span>
+                  <p>
+                    The resulting spatial cache supports routing, measurement,
+                    order, and relational reasoning, while improving performance
+                    on both VSI-Bench and OST-Bench.
+                  </p>
+                </article>
+              </div>
+            </div>
+
+            <aside class="trace-schema reveal">
+              <div class="schema-head">
+                <span class="section-kicker">TRACE Schema</span>
+                <h3>&lt; Meta Context, Trajectory, Entity Registry &gt;</h3>
+              </div>
+              <div class="schema-list">
+                <article class="schema-item">
+                  <span class="schema-index">01</span>
+                  <div>
+                    <h4>Meta Context</h4>
+                    <p>Room topology, coordinate alignment, and observer initialization.</p>
+                  </div>
+                </article>
+                <article class="schema-item">
+                  <span class="schema-index">02</span>
+                  <div>
+                    <h4>Trajectory</h4>
+                    <p>Timestamps, estimated positions, headings, and motion context.</p>
+                  </div>
+                </article>
+                <article class="schema-item">
+                  <span class="schema-index">03</span>
+                  <div>
+                    <h4>Entity Registry</h4>
+                    <p>Timestamped objects with signatures, coordinates, and relations.</p>
+                  </div>
+                </article>
+              </div>
+              <div class="pipeline-note">
+                <span class="section-kicker">Inference Interface</span>
+                <p>
+                  <strong>Egocentric Video</strong>
+                  <span aria-hidden="true">→</span>
+                  <strong>TRACE</strong>
+                  <span aria-hidden="true">→</span>
+                  <strong>Spatial QA Answer</strong>
+                </p>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="method">
+        <div class="container">
+          <div class="section-heading reveal">
+            <span class="section-kicker">Method</span>
+            <h2>How TRACE Structures Reasoning</h2>
+          </div>
+
+          <div class="method-grid">
+            <figure class="feature-figure reveal">
+              <div class="media-frame" style="--ratio: 2658 / 1262;">
+                <img
+                  src="assets/figures/method.png"
+                  alt="TRACE method figure with prompting structure, room layout, projected trajectory, and entity registry."
+                  width="2658"
+                  height="1262"
+                  loading="lazy"
+                />
+              </div>
+              <figcaption class="figure-caption">
+                <span class="caption-label">Method</span>
+                <p>
+                  TRACE first constructs a schema-compliant spatial trace, then
+                  conditions answer generation on that trace and the original video.
+                </p>
+              </figcaption>
+            </figure>
+
+            <div class="method-notes reveal">
+              <article class="method-note">
+                <span class="note-index">Step 1</span>
+                <h3>Spatial Descriptor</h3>
+                <p>
+                  The model observes egocentric video and emits structured
+                  allocentric text instead of unconstrained rationale.
+                </p>
+              </article>
+              <article class="method-note">
+                <span class="note-index">Step 2</span>
+                <h3>Structured Spatial Cache</h3>
+                <p>
+                  Layout, movement, and grounded objects are stored in a form the
+                  model can revisit during inference.
+                </p>
+              </article>
+              <article class="method-note">
+                <span class="note-index">Step 3</span>
+                <h3>Reasoning Parser</h3>
+                <p>
+                  Final answers are generated by reasoning over both the video and
+                  the previously constructed trace.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="results">
+        <div class="container">
+          <div class="section-heading reveal">
+            <span class="section-kicker">Results</span>
+            <h2>Consistent Gains Across Models and Settings</h2>
+          </div>
+
+          <div class="metric-strip reveal">
+            <article class="metric-card metric-card-wide">
+              <span class="metric-label">VSI-Bench<br />Gemini 3 Pro</span>
+              <div class="metric-value" data-count="7.54" data-prefix="+">+7.54</div>
+              <p>Absolute gain over Direct prompting.</p>
+            </article>
+            <article class="metric-card">
+              <span class="metric-label">VSI-Bench<br />Qwen2.5-VL-72B</span>
+              <div class="metric-value" data-count="3.10" data-prefix="+">+3.10</div>
+              <p>Open-weight performance also improves under the same setup.</p>
+            </article>
+            <article class="metric-card">
+              <span class="metric-label">VSI-Bench<br />MiMo-VL-7B</span>
+              <div class="metric-value" data-count="1.63" data-prefix="+">+1.63</div>
+              <p>Compact models benefit from explicit geometric grounding.</p>
+            </article>
+            <article class="metric-card">
+              <span class="metric-label">OST-Bench<br />Gemini 3 Pro</span>
+              <div class="metric-value" data-count="1.20" data-prefix="+">+1.20</div>
+              <p>TRACE remains effective in multi-turn embodied scene understanding.</p>
+            </article>
+            <article class="metric-card">
+              <span class="metric-label">OST-Bench<br />MiMo-VL-7B</span>
+              <div class="metric-value" data-count="2.39" data-prefix="+">+2.39</div>
+              <p>The strongest uplift appears on the compact open-source model.</p>
+            </article>
+            <article class="metric-card">
+              <span class="metric-label">Ablation Signal</span>
+              <div class="metric-stack">
+                <span><strong>-5.24</strong> without Entity Registry</span>
+                <span><strong>-1.92</strong> without Trajectory</span>
+              </div>
+              <p>Entity grounding contributes the largest effect.</p>
+            </article>
+          </div>
+
+          <div class="results-grid">
+            <div class="results-copy reveal">
+              <span class="section-kicker">Reading the results</span>
+              <ul class="results-list">
+                <li>TRACE consistently outperforms prior prompting strategies on VSI-Bench.</li>
+                <li>One-stage prompting is stronger than two-stage inference for both Gemini and Qwen.</li>
+                <li>Text-only inference stays competitive, showing TRACE is already a strong video summary.</li>
+                <li>Cross-environment gains remain stable across ARKitScenes, ScanNet, and ScanNetPP.</li>
+              </ul>
+            </div>
+
+            <div class="mini-figure-grid">
+              <figure class="mini-figure reveal">
+                <div class="media-frame" style="--ratio: 1028 / 913;">
+                  <img
+                    src="assets/figures/gain.png"
+                    alt="Performance gains across models on VSI-Bench."
+                    width="1028"
+                    height="913"
+                    loading="lazy"
+                  />
+                </div>
+                <figcaption class="figure-caption">
+                  <span class="caption-label">VSI Gains</span>
+                  <p>TRACE yields consistent improvements across multiple MLLM backbones.</p>
+                </figcaption>
+              </figure>
+
+              <figure class="mini-figure reveal">
+                <div class="media-frame" style="--ratio: 1386 / 1188;">
+                  <img
+                    src="assets/figures/exp.png"
+                    alt="Decomposition analysis of spatial descriptor and reasoning parser."
+                    width="1386"
+                    height="1188"
+                    loading="lazy"
+                  />
+                </div>
+                <figcaption class="figure-caption">
+                  <span class="caption-label">Decomposition</span>
+                  <p>Descriptor quality remains a key bottleneck in current spatial reasoning pipelines.</p>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="gallery">
+        <div class="container">
+          <div class="section-heading reveal">
+            <span class="section-kicker">Figure Gallery</span>
+            <h2>Core Visuals from the Paper</h2>
+          </div>
+
+          <div class="gallery-grid">
+            <button
+              class="gallery-card span-7 reveal"
+              type="button"
+              data-image="assets/figures/teaser.png"
+              data-title="Teaser"
+              data-caption="Motivation for TRACE: from egocentric video to textual allocentric context and structured spatial QA."
+            >
+              <span class="gallery-media media-frame artboard-frame" style="--ratio: 7938 / 4043;">
+                <img
+                  src="assets/figures/teaser.png"
+                  alt="Teaser figure."
+                  width="7938"
+                  height="4043"
+                  loading="lazy"
+                />
+              </span>
+              <span class="gallery-copy">
+                <strong>Teaser</strong>
+                <span>Motivation and high-level framing for TRACE.</span>
+              </span>
+            </button>
+
+            <button
+              class="gallery-card span-5 reveal"
+              type="button"
+              data-image="assets/figures/method.png"
+              data-title="Method"
+              data-caption="TRACE aligns a global coordinate system, logs camera trajectory, and registers grounded entities."
+            >
+              <span class="gallery-media media-frame" style="--ratio: 2658 / 1262;">
+                <img
+                  src="assets/figures/method.png"
+                  alt="Method figure."
+                  width="2658"
+                  height="1262"
+                  loading="lazy"
+                />
+              </span>
+              <span class="gallery-copy">
+                <strong>Method</strong>
+                <span>The TRACE schema and prompting interface.</span>
+              </span>
+            </button>
+
+            <button
+              class="gallery-card span-4 reveal"
+              type="button"
+              data-image="assets/figures/gain.png"
+              data-title="VSI Gains"
+              data-caption="TRACE delivers state-of-the-art gains across multiple MLLM backbones and parameter scales."
+            >
+              <span class="gallery-media media-frame" style="--ratio: 1028 / 913;">
+                <img
+                  src="assets/figures/gain.png"
+                  alt="Performance gain figure."
+                  width="1028"
+                  height="913"
+                  loading="lazy"
+                />
+              </span>
+              <span class="gallery-copy">
+                <strong>VSI Gains</strong>
+                <span>Consistent improvements over Direct prompting.</span>
+              </span>
+            </button>
+
+            <button
+              class="gallery-card span-4 reveal"
+              type="button"
+              data-image="assets/figures/exp.png"
+              data-title="Decomposition"
+              data-caption="Replacing the spatial descriptor hurts more than swapping the reasoning parser, exposing current bottlenecks."
+            >
+              <span class="gallery-media media-frame" style="--ratio: 1386 / 1188;">
+                <img
+                  src="assets/figures/exp.png"
+                  alt="Decomposition figure."
+                  width="1386"
+                  height="1188"
+                  loading="lazy"
+                />
+              </span>
+              <span class="gallery-copy">
+                <strong>Decomposition</strong>
+                <span>Descriptor vs. parser analysis for 3D reasoning.</span>
+              </span>
+            </button>
+
+            <button
+              class="gallery-card span-8 reveal"
+              type="button"
+              data-image="assets/figures/vis.png"
+              data-title="Representation Comparison"
+              data-caption="TRACE captures finer 3D granularity than Cognitive Map and supports harder spatial questions."
+            >
+              <span class="gallery-media media-frame" style="--ratio: 6023 / 2936;">
+                <img
+                  src="assets/figures/vis.png"
+                  alt="TRACE versus cognitive map figure."
+                  width="6023"
+                  height="2936"
+                  loading="lazy"
+                />
+              </span>
+              <span class="gallery-copy">
+                <strong>Representation Comparison</strong>
+                <span>TRACE captures the 3D granularity missing from Cognitive Map.</span>
+              </span>
+            </button>
+
+            <button
+              class="gallery-card span-4 reveal"
+              type="button"
+              data-image="assets/figures/stratified.png"
+              data-title="Cross-Environment Generalization"
+              data-caption="TRACE improves performance across ARKitScenes, ScanNet, and ScanNetPP without overfitting to one environment family."
+            >
+              <span class="gallery-media media-frame" style="--ratio: 2227 / 730;">
+                <img
+                  src="assets/figures/stratified.png"
+                  alt="Stratified analysis figure."
+                  width="2227"
+                  height="730"
+                  loading="lazy"
+                />
+              </span>
+              <span class="gallery-copy">
+                <strong>Cross-Environment Generalization</strong>
+                <span>Stable gains across multiple indoor scene distributions.</span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="citation">
+        <div class="container">
+          <div class="section-heading reveal">
+            <span class="section-kicker">Citation &amp; Resources</span>
+            <h2>Use TRACE in Your Work</h2>
+          </div>
+
+          <div class="citation-grid">
+            <div class="citation-copy reveal">
+              <p class="lead compact">
+                TRACE is a prompting interface for structured 3D spatial
+                reasoning with off-the-shelf multimodal large language models.
+              </p>
+
+              <div class="citation-meta">
+                <div>
+                  <span class="section-kicker">Venue</span>
+                  <p>ACL 2026 Main Conference</p>
+                </div>
+                <div>
+                  <span class="section-kicker">Location</span>
+                  <p>San Diego, California, USA</p>
+                </div>
+              </div>
+
+              <div class="hero-actions left">
+                <a
+                  class="button button-primary"
+                  href="assets/paper/trace_acl2026.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Read Paper</a
+                >
+                <a
+                  class="button button-secondary js-arxiv"
+                  href=""
+                  target="_blank"
+                  rel="noreferrer"
+                  hidden
+                  >View on arXiv</a
+                >
+              </div>
+
+              <div class="contact-block">
+                <span class="section-kicker">Contact</span>
+                <a href="mailto:hjc21@mails.tsinghua.edu.cn">Jiacheng Hua — hjc21@mails.tsinghua.edu.cn</a>
+                <a href="mailto:miaoliu@mail.tsinghua.edu.cn">Miao Liu — miaoliu@mail.tsinghua.edu.cn</a>
+              </div>
+
+              <p class="citation-line citation-reference">
+                Jiacheng Hua, Yishu Yin, Yuhang Wu, Tai Wang, Yifei Huang, and
+                Miao Liu. 2026. <em>Unleashing Spatial Reasoning in Multimodal
+                Large Language Models via Textual Representation Guided
+                Reasoning</em>. In <em>Proceedings of the 64th Annual Meeting of
+                the Association for Computational Linguistics (Volume 1: Long
+                Papers)</em>, San Diego, California, USA. Association for
+                Computational Linguistics.
+              </p>
+            </div>
+
+            <div class="bibtex-panel reveal" id="citation-block">
+              <div class="panel-head">
+                <span class="section-kicker">BibTeX</span>
+                <button class="copy-button" type="button" data-copy-target="bibtex-snippet">
+                  Copy
+                </button>
+              </div>
+              <pre id="bibtex-snippet"><code>@inproceedings{hua-etal-2026-unleashing,
+  title = {Unleashing Spatial Reasoning in Multimodal Large Language Models via Textual Representation Guided Reasoning},
+  author = {Hua, Jiacheng and Yin, Yishu and Wu, Yuhang and Wang, Tai and Huang, Yifei and Liu, Miao},
+  booktitle = {Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  month = jul,
+  year = {2026},
+  address = {San Diego, California, USA},
+  publisher = {Association for Computational Linguistics},
+  note = {To appear}
+}</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>TRACE: Textual Representation of Allocentric Context from Egocentric Video.</p>
+      </div>
+    </footer>
+
+    <div class="lightbox" id="lightbox" hidden>
+      <button class="lightbox-close" type="button" aria-label="Close figure viewer">
+        Close
+      </button>
+      <figure class="lightbox-figure">
+        <img src="" alt="" />
+        <figcaption>
+          <strong class="lightbox-title"></strong>
+          <span class="lightbox-caption"></span>
+        </figcaption>
+      </figure>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="TRACE favicon">
+  <rect width="64" height="64" rx="16" fill="#f7f2ea"/>
+  <path d="M18 18h28v6H35v24h-7V24H18z" fill="#1b1815"/>
+  <path d="M46 18v6H35" fill="none" stroke="#d29ca3" stroke-width="3" stroke-linecap="round"/>
+</svg>
