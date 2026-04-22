@@ -894,7 +894,51 @@ h1 span {
 }
 
 .contact-block a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0.16rem 0.5rem;
+  margin-left: -0.5rem;
+  border-radius: 999px;
   text-decoration: none;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 220ms ease;
+}
+
+.contact-block a::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    112deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0) 38%,
+    rgba(255, 255, 255, 0.76) 50%,
+    rgba(255, 255, 255, 0) 62%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-140%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.contact-block a:hover,
+.contact-block a:focus-visible {
+  color: var(--ink);
+  background: rgba(255, 253, 249, 0.54);
+  box-shadow: 0 10px 22px rgba(62, 49, 34, 0.07);
+}
+
+.contact-block a:hover::before,
+.contact-block a:focus-visible::before {
+  opacity: 1;
+  animation: contact-link-sheen 640ms ease-out;
 }
 
 .citation-line {
@@ -1072,6 +1116,16 @@ h1 span {
   100% {
     opacity: 1;
     transform: none;
+  }
+}
+
+@keyframes contact-link-sheen {
+  from {
+    transform: translateX(-140%);
+  }
+
+  to {
+    transform: translateX(140%);
   }
 }
 
