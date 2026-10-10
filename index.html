@@ -11,690 +11,982 @@
       gtag('config', 'G-3QK9NM14RR');
     </script>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TRACE | ACL 2026 Main</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TRACE · Unleashing Spatial Reasoning in MLLMs via Textual Representation Guided Reasoning (ACL 2026)</title>
     <meta
       name="description"
-      content="Project page for TRACE, a prompting method that induces multimodal large language models to generate text-based allocentric 3D representations for spatial reasoning."
+      content="TRACE (Textual Representation of Allocentric Context from Egocentric Video) is a training-free prompting method that has multimodal LLMs write a structured, text-based allocentric map of a scene before answering spatial questions. ACL 2026 Main Conference, Oral."
     />
+    <link rel="canonical" href="https://trace-reasoning.github.io/" />
+    <meta name="theme-color" content="#f7f4ee" />
+    <meta name="color-scheme" content="light" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="TRACE" />
+    <meta property="og:url" content="https://trace-reasoning.github.io/" />
+    <meta property="og:title" content="TRACE: Unleashing Spatial Reasoning in Multimodal LLMs via Textual Representation Guided Reasoning" />
+    <meta property="og:description" content="A training-free prompting method that has MLLMs write a structured, text-based allocentric map of the scene before answering. ACL 2026 Main Conference, Oral." />
+    <meta property="og:image" content="https://trace-reasoning.github.io/assets/brand/og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="TRACE project card with the paper title and the teaser figure." />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="citation_title" content="Unleashing Spatial Reasoning in Multimodal Large Language Models via Textual Representation Guided Reasoning" />
+    <meta name="citation_author" content="Hua, Jiacheng" />
+    <meta name="citation_author" content="Yin, Yishu" />
+    <meta name="citation_author" content="Wu, Yuhang" />
+    <meta name="citation_author" content="Wang, Tai" />
+    <meta name="citation_author" content="Huang, Yifei" />
+    <meta name="citation_author" content="Liu, Miao" />
+    <meta name="citation_publication_date" content="2026/07" />
+    <meta name="citation_conference_title" content="Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)" />
+    <meta name="citation_publisher" content="Association for Computational Linguistics" />
+    <meta name="citation_firstpage" content="13616" />
+    <meta name="citation_lastpage" content="13637" />
+    <meta name="citation_doi" content="10.18653/v1/2026.acl-long.620" />
+    <meta name="citation_pdf_url" content="https://trace-reasoning.github.io/assets/paper/trace_acl2026.pdf" />
+
     <link rel="icon" href="assets/brand/trace-favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="assets/fonts/newsreader-roman.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
     <script>
-      document.documentElement.classList.add("has-js");
+      document.documentElement.classList.add("js");
     </script>
     <link rel="stylesheet" href="styles.css" />
     <script defer src="script.js"></script>
   </head>
   <body>
-    <header class="site-header">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" data-header>
       <div class="container header-inner">
-        <a class="brand" href="#top">TRACE</a>
-        <nav class="site-nav" aria-label="Section navigation">
-          <a href="#overview">Overview</a>
+        <a class="brand" href="#top" aria-label="TRACE, back to top">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+            <rect width="32" height="32" rx="8" fill="#1b1916" />
+            <path d="M8 23.5 13.5 16.5 23.5 12" fill="none" stroke="#f7f4ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <circle cx="8" cy="23.5" r="2.4" fill="#f7f4ee" />
+            <circle cx="13.5" cy="16.5" r="2.4" fill="#f7f4ee" />
+            <path d="M23.5 12 27.8 6.5 30.4 12.5Z" fill="#e0707d" opacity=".5" />
+            <circle cx="23.5" cy="12" r="3.2" fill="#e0707d" />
+          </svg>
+          <span>TRACE</span>
+        </a>
+        <nav class="site-nav" aria-label="Sections">
+          <a href="#abstract">Abstract</a>
           <a href="#method">Method</a>
           <a href="#results">Results</a>
-          <a href="#gallery">Figures</a>
+          <a href="#analysis">Analysis</a>
+          <a href="#prompt">Prompt</a>
           <a href="#citation">Citation</a>
         </nav>
+        <a class="header-cta" href="https://aclanthology.org/2026.acl-long.620/" target="_blank" rel="noopener">
+          Paper
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg>
+        </a>
       </div>
     </header>
 
-    <main id="top">
-      <section class="hero section">
+    <main id="main">
+      <section class="hero" id="top">
         <div class="container hero-inner">
-          <div class="hero-copy reveal">
-            <div class="hero-meta-row">
-              <a
-                class="eyebrow eyebrow-primary"
-                href="https://2026.aclweb.org/"
-                target="_blank"
-                rel="noreferrer"
-                >ACL 2026 Main (Oral)</a
-              >
-            </div>
-            <p class="acronym-line">
-              TRACE = Textual Representation of Allocentric Context from Egocentric Video
-            </p>
-            <h1>
-              <span>Unleashing Spatial Reasoning</span>
-              <span>in Multimodal Large Language Models</span>
-              <span>via Textual Representation</span>
-              <span>Guided Reasoning</span>
-            </h1>
-            <p class="hero-summary">
-              TRACE induces multimodal models to generate a text-based
-              allocentric representation of the 3D environment as an
-              intermediate reasoning trace for spatial question answering.
-            </p>
+          <a class="venue" href="https://2026.aclweb.org/" target="_blank" rel="noopener">
+            <span class="venue-dot" aria-hidden="true"></span>
+            ACL 2026
+            <span class="venue-sep" aria-hidden="true"></span>
+            Main Conference
+            <span class="venue-sep" aria-hidden="true"></span>
+            <span class="venue-oral">Oral</span>
+          </a>
 
-            <div class="hero-actions">
-              <a
-                class="button button-primary"
-                href="assets/paper/trace_acl2026.pdf"
-                target="_blank"
-                rel="noreferrer"
-                >Paper</a
-              >
-              <a class="button button-secondary" href="#citation">BibTeX</a>
-              <a
-                class="button button-secondary js-arxiv"
-                href=""
-                target="_blank"
-                rel="noreferrer"
-                hidden
-                >arXiv</a
-              >
-            </div>
+          <h1 class="title">Unleashing Spatial Reasoning in Multimodal Large Language Models via Textual Representation Guided Reasoning</h1>
 
-            <div class="author-block">
-              <p class="author-line">
-                <a href="https://fleurs03.github.io/" target="_blank" rel="noreferrer">Jiacheng Hua</a><sup>1,2</sup>,
-                Yishu Yin<sup>1</sup>,
-                <a href="https://wuyuhang05.github.io/" target="_blank" rel="noreferrer">Yuhang Wu</a><sup>1</sup>,
-                <a href="https://tai-wang.github.io/" target="_blank" rel="noreferrer">Tai Wang</a><sup>2</sup>,
-                <a href="https://hyf015.github.io/" target="_blank" rel="noreferrer">Yifei Huang</a><sup>3,2</sup>,
-                <a href="https://aptx4869lm.github.io/" target="_blank" rel="noreferrer">Miao Liu</a><sup>1†</sup>
-              </p>
-              <div class="collab-rail" aria-label="Collaborating institutions">
-                <div class="institution-list">
-                  <article class="institution-entry">
-                    <div class="institution-badge institution-badge-emblem" aria-hidden="true">
-                      <img
-                        class="institution-logo institution-logo-emblem"
-                        src="assets/brand/thu-emblem-square.jpg"
-                        alt=""
-                        width="430"
-                        height="430"
-                        loading="eager"
-                      />
-                    </div>
-                    <div class="institution-copy">
-                      <span class="institution-meta"><sup>1</sup> Beijing</span>
-                      <strong>College of AI, Tsinghua University</strong>
-                    </div>
-                  </article>
-                  <article class="institution-entry">
-                    <div class="institution-badge institution-badge-share" aria-hidden="true">
-                      <img
-                        class="institution-logo institution-logo-share"
-                        src="assets/brand/shlab-share-logo.png"
-                        alt=""
-                        width="672"
-                        height="390"
-                        loading="eager"
-                      />
-                    </div>
-                    <div class="institution-copy">
-                      <span class="institution-meta"><sup>2</sup> Shanghai</span>
-                      <strong>Shanghai Artificial Intelligence Laboratory</strong>
-                    </div>
-                  </article>
-                  <article class="institution-entry">
-                    <div class="institution-badge institution-badge-leaf" aria-hidden="true">
-                      <img
-                        class="institution-logo institution-logo-leaf"
-                        src="assets/brand/utokyo-leaf.svg"
-                        alt=""
-                        width="46"
-                        height="52"
-                        loading="eager"
-                      />
-                    </div>
-                    <div class="institution-copy">
-                      <span class="institution-meta"><sup>3</sup> Tokyo</span>
-                      <strong>The University of Tokyo</strong>
-                    </div>
-                  </article>
-                </div>
-              </div>
-            </div>
+          <p class="acronym">
+            <b>T</b>extual <b>R</b>epresentation of <b>A</b>llocentric <b>C</b>ontext from <b>E</b>gocentric Video
+          </p>
 
-            <div class="hero-abstract">
-              <span class="section-kicker">Abstract</span>
-              <p>
-                Existing Multimodal Large Language Models (MLLMs) struggle with
-                3D spatial reasoning, as they fail to construct structured
-                abstractions of the 3D environment depicted in video inputs. To
-                bridge this gap, drawing inspiration from cognitive theories of
-                allocentric spatial reasoning, we investigate how to enable
-                MLLMs to model and reason over text-based spatial
-                representations of video. Specifically, we introduce
-                <em>Textual Representation of Allocentric Context from Egocentric
-                Video (TRACE)</em>, a prompting method that induces MLLMs to
-                generate text-based representations of 3D environments as
-                intermediate reasoning traces for more accurate spatial question
-                answering. TRACE encodes meta-context, camera trajectories, and
-                detailed object entities to support structured spatial reasoning
-                over egocentric videos. Extensive experiments on VSI-Bench and
-                OST-Bench demonstrate that TRACE yields notable and consistent
-                improvements over prior prompting strategies across a diverse
-                range of MLLM backbones, spanning different parameter scales and
-                training schemas.
-              </p>
-            </div>
-          </div>
+          <ul class="authors" aria-label="Authors">
+            <li><a href="https://fleurs03.github.io/" target="_blank" rel="noopener">Jiacheng Hua</a><sup>1,2</sup></li>
+            <li><span>Yishu Yin</span><sup>1</sup></li>
+            <li><a href="https://wuyuhang05.github.io/" target="_blank" rel="noopener">Yuhang Wu</a><sup>1</sup></li>
+            <li><a href="https://tai-wang.github.io/" target="_blank" rel="noopener">Tai Wang</a><sup>2</sup></li>
+            <li><a href="https://hyf015.github.io/" target="_blank" rel="noopener">Yifei Huang</a><sup>3,2</sup></li>
+            <li><a href="https://aptx4869lm.github.io/" target="_blank" rel="noopener">Miao Liu</a><sup>1&dagger;</sup></li>
+          </ul>
 
-          <figure class="hero-figure reveal">
-            <div class="media-frame artboard-frame" style="--ratio: 4330 / 2205;">
-              <img
-                src="assets/figures/teaser.png"
-                alt="TRACE teaser figure showing the challenge of spatial reasoning from egocentric video and the TRACE representation."
-                width="4330"
-                height="2205"
-                loading="eager"
-              />
-            </div>
-            <figcaption class="figure-caption">
-              <span class="caption-label">Teaser</span>
-              <p>
-                TRACE encodes meta-context, camera trajectory, and entities as
-                an intermediate reasoning trace for spatial QA with MLLMs.
-              </p>
+          <ul class="affiliations" aria-label="Affiliations">
+            <li class="affil">
+              <img class="affil-logo affil-logo-thu" src="assets/brand/thu-emblem-120.webp" alt="" width="120" height="120" />
+              <span><sup>1</sup>College of AI, Tsinghua University</span>
+            </li>
+            <li class="affil">
+              <img class="affil-logo affil-logo-shlab" src="assets/brand/shlab-mark.png" alt="" width="240" height="81" />
+              <span><sup>2</sup>Shanghai Artificial Intelligence Laboratory</span>
+            </li>
+            <li class="affil">
+              <img class="affil-logo affil-logo-utokyo" src="assets/brand/utokyo-leaf.svg" alt="" width="46" height="52" />
+              <span><sup>3</sup>The University of Tokyo</span>
+            </li>
+          </ul>
+          <p class="corresponding"><sup>&dagger;</sup>Corresponding author</p>
+
+          <nav class="actions" aria-label="Paper resources">
+            <a class="btn btn-primary" href="https://aclanthology.org/2026.acl-long.620/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 5.5c2.8-1 5.6-.8 8.5 1 2.9-1.8 5.7-2 8.5-1v13c-2.8-1-5.6-.8-8.5 1-2.9-1.8-5.7-2-8.5-1z" /><path d="M12 6.5v13" /></svg>
+              Paper
+            </a>
+            <a class="btn" href="https://arxiv.org/abs/2603.23404" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h8l4.5 4.5v12.5H6z" /><path d="M14 3.5V8h4.5" /><path d="m9.5 12.5 5 5m0-5-5 5" /></svg>
+              arXiv
+            </a>
+            <a class="btn" href="assets/paper/trace_acl2026.pdf" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5" /><path d="M4.5 15.5v3a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5v-3" /></svg>
+              PDF
+            </a>
+            <a class="btn" href="#prompt">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5" /><path d="m7.5 10 2.5 2-2.5 2M12.5 15h4" /></svg>
+              Prompt
+            </a>
+            <a class="btn" href="#citation">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 7.5H6.8A1.8 1.8 0 0 0 5 9.3v2.4a1.8 1.8 0 0 0 1.8 1.8h2.7v1.2c0 1.6-1 2.6-2.8 2.9M19 7.5h-2.7a1.8 1.8 0 0 0-1.8 1.8v2.4a1.8 1.8 0 0 0 1.8 1.8H19v1.2c0 1.6-1 2.6-2.8 2.9" /></svg>
+              BibTeX
+            </a>
+          </nav>
+        </div>
+
+        <div class="container container-wide">
+          <figure class="plate plate-hero">
+            <button class="plate-media" type="button" data-zoom data-full="assets/figures/teaser-2400.webp" data-original="assets/figures/teaser.png" aria-label="Enlarge Figure 1">
+              <picture>
+                <source type="image/webp" srcset="assets/figures/teaser-1200.webp 1200w, assets/figures/teaser-2400.webp 2400w" sizes="(min-width: 1320px) 1200px, 94vw" />
+                <img
+                  src="assets/figures/teaser.png"
+                  width="4330"
+                  height="2205"
+                  alt="Figure 1. (a) Frames of an egocentric office video with the question whether the cup is front-left, front-right, back-left or back-right of an observer standing by the trash can and facing the telephone. (b) A human-written description of the room layout next to a top-down sketch. (c) The TRACE representation with meta context, camera trajectory and entity registry."
+                  fetchpriority="high"
+                  decoding="async"
+                />
+              </picture>
+            </button>
+            <figcaption>
+              <span class="fig-num">Figure 1</span>
+              Motivation for TRACE in video-based spatial reasoning. (a) An egocentric video paired with a query that requires holistic spatial reasoning. (b) A textual description that vividly captures the room layout needed to solve the question. (c) TRACE encodes meta-context, camera trajectory, and entities, serving as an intermediate reasoning trace for spatial QA with MLLMs.
             </figcaption>
           </figure>
         </div>
       </section>
 
-      <section class="overview-band">
+      <section class="section" id="abstract" aria-labelledby="abstract-title">
         <div class="container">
-          <div class="band-grid reveal">
-            <article class="band-cell">
-              <span class="band-label">Why it matters</span>
-              <p>Existing MLLMs struggle to construct structured abstractions of 3D environments from egocentric video.</p>
-            </article>
-            <article class="band-cell">
-              <span class="band-label">What TRACE changes</span>
-              <p>It induces a structured allocentric representation with meta-context, trajectory, and entity registry.</p>
-            </article>
-            <article class="band-cell">
-              <span class="band-label">What we observe</span>
-              <p>Performance improves consistently across backbones, parameter scales, and training schemas.</p>
-            </article>
+          <div class="abstract-grid">
+            <div class="abstract-aside reveal">
+              <p class="kicker"><span>01</span>Abstract</p>
+              <h2 class="sr-only" id="abstract-title">Abstract</h2>
+              <p class="tldr-label">TL;DR</p>
+              <p class="tldr">
+                TRACE has a multimodal LLM <em>write down</em> a structured, text-based map of the scene&nbsp;&mdash; meta context, camera trajectory and an entity registry&nbsp;&mdash; and then answer spatial questions by&nbsp;reasoning&nbsp;over&nbsp;it.
+              </p>
+            </div>
+            <div class="abstract-body reveal">
+              <p>
+                Existing Multimodal Large Language Models (MLLMs) struggle with 3D spatial reasoning, as they fail to construct structured abstractions of the 3D environment depicted in video inputs. To bridge this gap, drawing inspiration from cognitive theories of allocentric spatial reasoning, we investigate how to enable MLLMs to model and reason over text-based spatial representations of video. Specifically, we introduce <em>Textual Representation of Allocentric Context from Egocentric Video (TRACE)</em>, a prompting method that induces MLLMs to generate text-based representations of 3D environments as intermediate reasoning traces for more accurate spatial question answering. TRACE encodes meta-context, camera trajectories, and detailed object entities to support structured spatial reasoning over egocentric videos. Extensive experiments on VSI-Bench and OST-Bench demonstrate that TRACE yields notable and consistent improvements over prior prompting strategies across a diverse range of MLLM backbones, spanning different parameter scales and training schemas. We further present ablation studies to validate our design choices, along with detailed analyses that probe the bottlenecks of 3D spatial reasoning in MLLMs.
+              </p>
+            </div>
           </div>
+
+          <ul class="stats reveal" aria-label="Key results">
+            <li class="stat">
+              <span class="stat-value">+7.54</span>
+              <span class="stat-label">VSI-Bench average over Direct prompting with Gemini&nbsp;3&nbsp;Pro (52.61&nbsp;&rarr;&nbsp;60.15)</span>
+            </li>
+            <li class="stat">
+              <span class="stat-value">5<span class="stat-of">/5</span></span>
+              <span class="stat-label">MLLM backbones on which TRACE has the best VSI-Bench average of all prompting methods</span>
+            </li>
+            <li class="stat">
+              <span class="stat-value">+2.39</span>
+              <span class="stat-label">OST-Bench average over Direct prompting with MiMo-VL-7B (62.65&nbsp;&rarr;&nbsp;65.04)</span>
+            </li>
+            <li class="stat">
+              <span class="stat-value">1<span class="stat-of">&nbsp;pass</span></span>
+              <span class="stat-label">Map and answer come from a single generation&nbsp;&mdash; no fine-tuning, no extra 3D inputs</span>
+            </li>
+          </ul>
         </div>
       </section>
 
-      <section class="section" id="overview">
+      <section class="section" id="method" aria-labelledby="method-title">
         <div class="container">
-          <div class="section-heading reveal">
-            <span class="section-kicker">Overview</span>
-            <h2>Text as a Spatial Interface</h2>
-          </div>
+          <header class="section-head reveal">
+            <p class="kicker"><span>02</span>Method</p>
+            <h2 id="method-title">Write the map first, then reason over&nbsp;it</h2>
+            <p class="lead">
+              People do not answer spatial questions by scanning individual frames: we build an allocentric representation of the scene and reason about its layout&nbsp;&mdash; and such a representation can be described in text alone. TRACE asks the MLLM to make it explicit before answering.
+            </p>
+          </header>
 
-          <div class="overview-grid">
-            <div class="overview-prose reveal">
-              <p class="lead">
-                TRACE turns egocentric video into a text-based allocentric
-                representation that multimodal models can reason over.
-              </p>
-              <div class="overview-points">
-                <article class="overview-point">
-                  <span class="overview-label">Problem</span>
-                  <p>
-                    Existing MLLMs often over-rely on 2D visual cues instead of
-                    building hierarchical abstractions of the 3D scene.
-                  </p>
-                </article>
-                <article class="overview-point">
-                  <span class="overview-label">Approach</span>
-                  <p>
-                    TRACE explicitly models meta-context, camera trajectory, and
-                    detailed object entities as an intermediate reasoning trace.
-                  </p>
-                </article>
-                <article class="overview-point">
-                  <span class="overview-label">Outcome</span>
-                  <p>
-                    The resulting allocentric representation supports routing,
-                    measurement, order, and relational reasoning while improving
-                    spatial QA on VSI-Bench and OST-Bench.
-                  </p>
-                </article>
+          <ol class="pipeline reveal" aria-label="TRACE inference">
+            <li class="pipe-node">
+              <span class="pipe-label">Input</span>
+              <span class="pipe-main">Egocentric video <i class="m">V</i><br />and question <i class="m">Q</i></span>
+            </li>
+            <li class="pipe-link">
+              <span class="pipe-label">Spatial Descriptor</span>
+              <span class="pipe-arrow" aria-hidden="true"></span>
+              <span class="pipe-math"><i class="m">P</i>(<span class="m-cal">𝒢</span> | <i class="m">V</i>, <i class="m">Q</i>)</span>
+            </li>
+            <li class="pipe-node pipe-node-key">
+              <span class="pipe-label">TRACE</span>
+              <span class="pipe-main"><span class="m-cal">𝒢</span> = &langle;<span class="m-cal c-meta">ℳ</span>, <span class="m-cal c-traj">𝒯</span>, <span class="m-cal c-ent">ℰ</span>&rangle;</span>
+            </li>
+            <li class="pipe-link">
+              <span class="pipe-label">Reasoning Parser</span>
+              <span class="pipe-arrow" aria-hidden="true"></span>
+              <span class="pipe-math"><i class="m">P</i>(<i class="m">A</i> | <span class="m-cal">𝒢</span>, <i class="m">V</i>, <i class="m">Q</i>)</span>
+            </li>
+            <li class="pipe-node">
+              <span class="pipe-label">Output</span>
+              <span class="pipe-main">Answer <i class="m">A</i></span>
+            </li>
+          </ol>
+          <p class="pipeline-note reveal">
+            Both factors are produced in <strong>one generation pass</strong>, like a structured chain of thought. Writing <span class="m-cal">𝒢</span> loads the context with a &ldquo;spatial cache&rdquo; of the environment, which the model then queries&nbsp;&mdash; computing Euclidean distances between entity coordinates or traversing trajectory nodes&nbsp;&mdash; to ground its answer.
+          </p>
+
+          <div class="anatomy reveal" data-anatomy data-focus="all">
+            <div class="anatomy-head">
+              <div>
+                <p class="anatomy-eyebrow">Interactive</p>
+                <h3 class="anatomy-title">Anatomy of a TRACE</h3>
+              </div>
+              <div class="layer-tabs" role="group" aria-label="Highlight a TRACE component">
+                <button class="layer-tab" type="button" aria-pressed="true" data-layer="all">Full TRACE</button>
+                <button class="layer-tab" type="button" aria-pressed="false" data-layer="meta"><span class="swatch swatch-meta" aria-hidden="true"></span>Meta Context</button>
+                <button class="layer-tab" type="button" aria-pressed="false" data-layer="traj"><span class="swatch swatch-traj" aria-hidden="true"></span>Trajectory</button>
+                <button class="layer-tab" type="button" aria-pressed="false" data-layer="ent"><span class="swatch swatch-ent" aria-hidden="true"></span>Entity Registry</button>
               </div>
             </div>
 
-            <aside class="trace-schema reveal">
-              <div class="schema-head">
-                <span class="section-kicker">TRACE Schema</span>
-                <h3>&lt; Meta Context, Trajectory, Entity Registry &gt;</h3>
-              </div>
-              <div class="schema-list">
-                <article class="schema-item">
-                  <span class="schema-index">01</span>
-                  <div>
-                    <h4>Meta Context</h4>
-                    <p>Room topology, grid alignment, and observer initialization.</p>
-                  </div>
-                </article>
-                <article class="schema-item">
-                  <span class="schema-index">02</span>
-                  <div>
-                    <h4>Trajectory</h4>
-                    <p>Timestamps, estimated positions, headings, and motion context.</p>
-                  </div>
-                </article>
-                <article class="schema-item">
-                  <span class="schema-index">03</span>
-                  <div>
-                    <h4>Entity Registry</h4>
-                    <p>Timestamped objects with signatures, coordinates, and relations.</p>
-                  </div>
-                </article>
-              </div>
-              <div class="pipeline-note">
-                <span class="section-kicker">Inference Interface</span>
-                <p>
-                  <strong>Egocentric Video</strong>
-                  <span aria-hidden="true">→</span>
-                  <strong>TRACE</strong>
-                  <span aria-hidden="true">→</span>
-                  <strong>Spatial QA Answer</strong>
-                </p>
-              </div>
-            </aside>
-          </div>
-        </div>
-      </section>
+            <div class="anatomy-body">
+              <figure class="map-pane">
+                <svg class="map" viewBox="0 0 546 546" role="img" aria-labelledby="map-title map-desc">
+                  <title id="map-title">Top-down view of the example TRACE</title>
+                  <desc id="map-desc">A room-aligned grid in meters with the origin at the camera's starting position, a three-step camera trajectory, and four registered entities: door_01, bed_01, nightstand_01 and trash_bin_01.</desc>
+                  <defs>
+                    <marker id="arrow-meta" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                      <path d="M1 1 9 5 1 9" fill="none" stroke="var(--meta)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                    </marker>
+                    <marker id="arrow-ink" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                      <path d="M1 1 9 5 1 9" fill="none" stroke="var(--ink-2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                    </marker>
+                  </defs>
 
-      <section class="section" id="method">
-        <div class="container">
-          <div class="section-heading reveal">
-            <span class="section-kicker">Method</span>
-            <h2>How TRACE Structures Reasoning</h2>
+                  <g class="map-grid" aria-hidden="true">
+                    <path class="grid-minor" d="M39 30V516M84 30V516M129 30V516M174 30V516M219 30V516M264 30V516M309 30V516M354 30V516M399 30V516M444 30V516M489 30V516M30 48H516M30 93H516M30 138H516M30 183H516M30 228H516M30 273H516M30 318H516M30 363H516M30 408H516M30 453H516M30 498H516" />
+                    <path class="grid-major" d="M39 30V516M129 30V516M219 30V516M309 30V516M399 30V516M489 30V516M30 93H516M30 183H516M30 273H516M30 363H516M30 453H516" />
+                    <g class="grid-ticks">
+                      <text x="39" y="536">&minus;2</text>
+                      <text x="129" y="536">&minus;1</text>
+                      <text x="219" y="536">0</text>
+                      <text x="309" y="536">1</text>
+                      <text x="399" y="536">2</text>
+                      <text x="489" y="536">3</text>
+                      <text class="tick-y" x="22" y="457">0</text>
+                      <text class="tick-y" x="22" y="367">1</text>
+                      <text class="tick-y" x="22" y="277">2</text>
+                      <text class="tick-y" x="22" y="187">3</text>
+                      <text class="tick-y" x="22" y="97">4</text>
+                    </g>
+                    <text class="grid-legend" x="516" y="22">grid 0.5 m &middot; +Y = north</text>
+                  </g>
+
+                  <g class="map-layer" data-layer="meta">
+                    <path class="walls" pathLength="1" d="M331.5 466.5H489V61.5H66V466.5H250.5" />
+                    <text class="room-label" x="82" y="90">rectangular bedroom</text>
+                    <g class="align-hint">
+                      <path d="M80 330V150" marker-end="url(#arrow-meta)" />
+                      <text transform="rotate(-90 92 240)" x="92" y="240">+Y &#8741; left wall</text>
+                    </g>
+                    <g class="compass">
+                      <path d="M100 440V402" marker-end="url(#arrow-ink)" />
+                      <path d="M100 440H138" marker-end="url(#arrow-ink)" />
+                      <text x="100" y="393">+Y&#8201;N</text>
+                      <text class="compass-x" x="145" y="444">+X&#8201;E</text>
+                    </g>
+                    <path class="heading-ray" d="M219 453 186 420" marker-end="url(#arrow-meta)" />
+                    <g class="origin">
+                      <circle cx="219" cy="453" r="4" />
+                      <path d="M207 453H231M219 441V465" />
+                      <text x="219" y="490">origin [0, 0]</text>
+                    </g>
+                  </g>
+
+                  <g class="map-layer" data-layer="traj">
+                    <path class="traj-line" pathLength="1" d="M219 453V291L237 138" />
+                    <path class="traj-chevron" d="M213 375.5 219 368.5 225 375.5" />
+                    <path class="traj-chevron" d="M221.6 217.3 228.4 211 233.6 218.7" />
+                    <g class="cam" data-ref="s0" tabindex="0" style="--i: 0">
+                      <title>Step 0 at 0 s: position [0.0, 0.0], facing NW</title>
+                      <g transform="translate(219 453) rotate(-135)">
+                        <path class="cam-cone" d="M0 0 30 -16A34 34 0 0 1 30 16Z" />
+                      </g>
+                      <circle class="cam-dot" cx="219" cy="453" r="6.5" />
+                      <text class="cam-label" x="234" y="448">0 s</text>
+                    </g>
+                    <g class="cam" data-ref="s1" tabindex="0" style="--i: 1">
+                      <title>Step 1 at 4 s: position [0.0, 1.8], facing North</title>
+                      <g transform="translate(219 291) rotate(-90)">
+                        <path class="cam-cone" d="M0 0 30 -16A34 34 0 0 1 30 16Z" />
+                      </g>
+                      <circle class="cam-dot" cx="219" cy="291" r="6.5" />
+                      <text class="cam-label" x="234" y="296">4 s</text>
+                    </g>
+                    <g class="cam" data-ref="s2" tabindex="0" style="--i: 2">
+                      <title>Step 2 at 8 s: position [0.2, 3.5], facing East</title>
+                      <g transform="translate(237 138)">
+                        <path class="cam-cone" d="M0 0 30 -16A34 34 0 0 1 30 16Z" />
+                      </g>
+                      <circle class="cam-dot" cx="237" cy="138" r="6.5" />
+                      <text class="cam-label cam-label-end" x="223" y="143">8 s</text>
+                    </g>
+                  </g>
+
+                  <g class="map-layer" data-layer="ent">
+                    <path class="relation" d="M382.5 209 388.5 265" />
+                    <g class="pin" data-ref="door_01" tabindex="0" style="--i: 0">
+                      <title>door_01 at [0.8, 0.0]: white hinged door with silver handle (open)</title>
+                      <path class="door-swing" d="M250.5 466.5A81 81 0 0 1 331.5 385.5" />
+                      <path class="door-leaf" d="M331.5 466.5V385.5" />
+                      <circle class="pin-ring" cx="291" cy="453" r="7.5" />
+                      <circle class="pin-core" cx="291" cy="453" r="3" />
+                      <text class="pin-label" x="291" y="433">door_01</text>
+                    </g>
+                    <g class="pin" data-ref="bed_01" tabindex="0" style="--i: 1">
+                      <title>bed_01 at [1.8, 2.8]: double bed with white sheets and dark frame</title>
+                      <circle class="pin-ring" cx="381" cy="201" r="7.5" />
+                      <circle class="pin-core" cx="381" cy="201" r="3" />
+                      <text class="pin-label" x="381" y="182">bed_01</text>
+                    </g>
+                    <g class="pin" data-ref="nightstand_01" tabindex="0" style="--i: 2">
+                      <title>nightstand_01 at [1.9, 2.0]: small wooden bedside table</title>
+                      <circle class="pin-ring" cx="390" cy="273" r="7.5" />
+                      <circle class="pin-core" cx="390" cy="273" r="3" />
+                      <text class="pin-label" x="390" y="297">nightstand_01</text>
+                    </g>
+                    <g class="pin" data-ref="trash_bin_01" tabindex="0" style="--i: 3">
+                      <title>trash_bin_01 at [-1.3, 2.4]: black cylindrical trash bin</title>
+                      <circle class="pin-ring" cx="102" cy="237" r="7.5" />
+                      <circle class="pin-core" cx="102" cy="237" r="3" />
+                      <text class="pin-label pin-label-start" x="116" y="241">trash_bin_01</text>
+                    </g>
+                  </g>
+                </svg>
+                <figcaption>
+                  Reference example adapted from Appendix&nbsp;A of the paper (approximate meters). <code>Meta_Context</code> values are filled in for illustration.
+                </figcaption>
+              </figure>
+
+              <div class="yaml-pane">
+                <div class="layer-desc">
+                  <p data-desc="all">A TRACE is one YAML document with three sections. Pick a component above, or hover an entry to see where it lives on the map.</p>
+                  <p data-desc="meta"><strong>Meta Context</strong> fixes a room-aligned frame: the origin [0,&nbsp;0] is the observer's starting position and +Y follows the most salient straight structure of the room rather than the camera's initial heading, so the model does not lose track of its own coordinate system.</p>
+                  <p data-desc="traj"><strong>Trajectory</strong> reconstructs the observer's path as timestamped steps, each with an estimated position [x,&nbsp;y], one of eight cardinal headings and an action note&nbsp;&mdash; so route and order questions can be answered by traversing the map instead of relying on transient visual memory.</p>
+                  <p data-desc="ent"><strong>Entity Registry</strong> lists every object individually (<code>chair_01</code>, <code>chair_02</code>, &hellip;) with a first-seen time, a visual signature, metric [x,&nbsp;y] estimates and relations to nearby entities&nbsp;&mdash; much finer than the 10&nbsp;&times;&nbsp;10 grid of a cognitive map.</p>
+                </div>
+                <pre class="yaml" tabindex="0" role="region" aria-label="Example TRACE in YAML" data-yaml><code><span class="sec" data-sec="meta"><span class="ln"><span class="t-k">Meta_Context</span><span class="t-p">:</span></span><span class="ln">  <span class="t-k">room_topology</span><span class="t-p">:</span> <span class="t-s">"rectangular bedroom"</span></span><span class="ln">  <span class="t-k">grid_alignment</span><span class="t-p">:</span> <span class="t-s">"+Y along the left wall, toward the far wall"</span></span><span class="ln">  <span class="t-k">initial_camera_heading</span><span class="t-p">:</span> <span class="t-s">"NW (-X,+Y)"</span></span></span><span class="ln gap"> </span><span class="sec" data-sec="traj"><span class="ln"><span class="t-k">Trajectory</span><span class="t-p">:</span></span><span class="ln">  <span class="t-c"># Track movement relative to the ROOM GRID, not just camera view.</span></span><span class="blk" data-ref="s0"><span class="ln">  <span class="t-p">-</span> <span class="t-k">step</span><span class="t-p">:</span> <span class="t-n">0</span></span><span class="ln">    <span class="t-k">time</span><span class="t-p">:</span> <span class="t-s">"0s"</span></span><span class="ln">    <span class="t-k">pos</span><span class="t-p">:</span> <span class="t-p">[</span><span class="t-n">0.0</span><span class="t-p">,</span> <span class="t-n">0.0</span><span class="t-p">]</span></span><span class="ln">    <span class="t-k">facing</span><span class="t-p">:</span> <span class="t-s">"NW (-X,+Y)"</span></span><span class="ln">    <span class="t-k">action</span><span class="t-p">:</span> <span class="t-s">"Standing near entrance, panning across the room"</span></span></span><span class="blk" data-ref="s1"><span class="ln">  <span class="t-p">-</span> <span class="t-k">step</span><span class="t-p">:</span> <span class="t-n">1</span></span><span class="ln">    <span class="t-k">time</span><span class="t-p">:</span> <span class="t-s">"4s"</span></span><span class="ln">    <span class="t-k">pos</span><span class="t-p">:</span> <span class="t-p">[</span><span class="t-n">0.0</span><span class="t-p">,</span> <span class="t-n">1.8</span><span class="t-p">]</span></span><span class="ln">    <span class="t-k">facing</span><span class="t-p">:</span> <span class="t-s">"North (+Y)"</span></span><span class="ln">    <span class="t-k">action</span><span class="t-p">:</span> <span class="t-s">"Moves forward along the main room axis"</span></span></span><span class="blk" data-ref="s2"><span class="ln">  <span class="t-p">-</span> <span class="t-k">step</span><span class="t-p">:</span> <span class="t-n">2</span></span><span class="ln">    <span class="t-k">time</span><span class="t-p">:</span> <span class="t-s">"8s"</span></span><span class="ln">    <span class="t-k">pos</span><span class="t-p">:</span> <span class="t-p">[</span><span class="t-n">0.2</span><span class="t-p">,</span> <span class="t-n">3.5</span><span class="t-p">]</span></span><span class="ln">    <span class="t-k">facing</span><span class="t-p">:</span> <span class="t-s">"East (+X)"</span></span><span class="ln">    <span class="t-k">action</span><span class="t-p">:</span> <span class="t-s">"Turning right to inspect bedside area"</span></span></span></span><span class="ln gap"> </span><span class="sec" data-sec="ent"><span class="ln"><span class="t-k">Entity_Registry</span><span class="t-p">:</span></span><span class="ln">  <span class="t-c"># The Map. Coordinates are strictly [x, y] in meters.</span></span><span class="blk" data-ref="door_01"><span class="ln">  <span class="t-p">-</span> <span class="t-k">id</span><span class="t-p">:</span> <span class="t-s">"door_01"</span></span><span class="ln">    <span class="t-k">category</span><span class="t-p">:</span> <span class="t-s">"door"</span></span><span class="ln">    <span class="t-k">first_seen_at</span><span class="t-p">:</span> <span class="t-s">"0s"</span></span><span class="ln">    <span class="t-k">state</span><span class="t-p">:</span> <span class="t-s">"open"</span></span><span class="ln">    <span class="t-k">estimated_pos</span><span class="t-p">:</span> <span class="t-p">[</span><span class="t-n">0.8</span><span class="t-p">,</span> <span class="t-n">0.0</span><span class="t-p">]</span></span><span class="ln">    <span class="t-k">approx_size</span><span class="t-p">:</span> <span class="t-p">[</span><span class="t-n">0.9</span><span class="t-p">,</span> <span class="t-n">2.1</span><span class="t-p">,</span> <span class="t-n">0.1</span><span class="t-p">]</span></span><span class="ln">    <span class="t-k">visual_signature</span><span class="t-p">:</span> <span class="t-s">"White hinged door with silver handle"</span></span><span class="ln">    <span class="t-k">spatial_relation</span><span class="t-p">:</span> <span class="t-s">"At the entrance boundary of the bedroom"</span></span></span><span class="blk" data-ref="bed_01"><span class="ln">  <span class="t-p">-</span> <span class="t-k">id</span><span class="t-p">:</span> <span class="t-s">"bed_01"</span></span><span class="ln">    <span class="t-k">category</span><span class="t-p">:</span> <span class="t-s">"bed"</span></span><span class="ln">    <span class="t-k">first_seen_at</span><span class="t-p">:</span> <span class="t-s">"5s"</span></span><span class="ln">    <span class="t-k">estimated_pos</span><span class="t-p">:</span> <span class="t-p">[</span><span class="t-n">1.8</span><span class="t-p">,</span> <span class="t-n">2.8</span><span class="t-p">]</span></span><span class="ln">    <span class="t-k">approx_size</span><span class="t-p">:</span> <span class="t-p">[</span><span class="t-n">1.6</span><span class="t-p">,</span> <span class="t-n">2.0</span><span class="t-p">,</span> <span class="t-n">0.6</span><span class="t-p">]</span></span><span class="ln">    <span class="t-k">orientation</span><span class="t-p">:</span> <span class="t-s">"Headboard against +X wall"</span></span><span class="ln">    <span class="t-k">visual_signature</span><span class="t-p">:</span> <span class="t-s">"Double bed with white sheets and dark frame"</span></span><span class="ln">    <span class="t-k">spatial_relation</span><span class="t-p">:</span> <span class="t-s">"Against the right wall, beside nightstand_01"</span></span></span><span class="blk" data-ref="nightstand_01"><span class="ln">  <span class="t-p">-</span> <span class="t-k">id</span><span class="t-p">:</span> <span class="t-s">"nightstand_01"</span></span><span class="ln">    <span class="t-k">category</span><span class="t-p">:</span> <span class="t-s">"nightstand"</span></span><span class="ln">    <span class="t-k">first_seen_at</span><span class="t-p">:</span> <span class="t-s">"7s"</span></span><span class="ln">    <span class="t-k">estimated_pos</span><span class="t-p">:</span> <span class="t-p">[</span><span class="t-n">1.9</span><span class="t-p">,</span> <span class="t-n">2.0</span><span class="t-p">]</span></span><span class="ln">    <span class="t-k">approx_size</span><span class="t-p">:</span> <span class="t-p">[</span><span class="t-n">0.5</span><span class="t-p">,</span> <span class="t-n">0.6</span><span class="t-p">,</span> <span class="t-n">0.4</span><span class="t-p">]</span></span><span class="ln">    <span class="t-k">visual_signature</span><span class="t-p">:</span> <span class="t-s">"Small wooden bedside table"</span></span><span class="ln">    <span class="t-k">spatial_relation</span><span class="t-p">:</span> <span class="t-s">"In front of bed_01 near the headboard"</span></span></span><span class="blk" data-ref="trash_bin_01"><span class="ln">  <span class="t-p">-</span> <span class="t-k">id</span><span class="t-p">:</span> <span class="t-s">"trash_bin_01"</span></span><span class="ln">    <span class="t-k">category</span><span class="t-p">:</span> <span class="t-s">"trash_bin"</span></span><span class="ln">    <span class="t-k">first_seen_at</span><span class="t-p">:</span> <span class="t-s">"10s"</span></span><span class="ln">    <span class="t-k">estimated_pos</span><span class="t-p">:</span> <span class="t-p">[</span><span class="t-n">-1.3</span><span class="t-p">,</span> <span class="t-n">2.4</span><span class="t-p">]</span></span><span class="ln">    <span class="t-k">approx_size</span><span class="t-p">:</span> <span class="t-p">[</span><span class="t-n">0.3</span><span class="t-p">,</span> <span class="t-n">0.4</span><span class="t-p">,</span> <span class="t-n">0.3</span><span class="t-p">]</span></span><span class="ln">    <span class="t-k">visual_signature</span><span class="t-p">:</span> <span class="t-s">"Black cylindrical trash bin"</span></span><span class="ln">    <span class="t-k">spatial_relation</span><span class="t-p">:</span> <span class="t-s">"Near the left wall below desk_01"</span></span></span></span></code></pre>
+              </div>
+            </div>
           </div>
 
-          <div class="method-grid">
-            <figure class="feature-figure reveal">
-              <div class="media-frame" style="--ratio: 4348 / 2042;">
+          <figure class="plate plate-method reveal">
+            <button class="plate-media" type="button" data-zoom data-full="assets/figures/method-2400.webp" data-original="assets/figures/method.png" aria-label="Enlarge Figure 2">
+              <picture>
+                <source type="image/webp" srcset="assets/figures/method-1200.webp 1200w, assets/figures/method-2400.webp 2400w" sizes="(min-width: 1260px) 1140px, 94vw" />
                 <img
                   src="assets/figures/method.png"
-                  alt="TRACE method figure with prompting structure, room layout, projected trajectory, and entity registry."
                   width="4348"
                   height="2042"
                   loading="lazy"
+                  decoding="async"
+                  alt="Figure 2. TRACE on a hotel-room video asking which of bed, chair, backpack and pillow is closest to the door. Prompt excerpts instruct the model to align its grid with the room geometry, log the camera path, and register every visible object; the resulting room layout, projected trajectory and entity registry are shown next to example Meta Context, Trajectory and Entity Registry entries."
                 />
+              </picture>
+            </button>
+            <figcaption>
+              <span class="fig-num">Figure 2</span>
+              Illustration of TRACE. We construct TRACE by aligning a global coordinate system with the room layout and geometry, logging the camera trajectory across temporal steps, and registering visible objects with key attributes, estimated positions, and spatial relations. The key prompts used to guide MLLMs to generate this intermediate reasoning trace are also shown.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section" id="results" aria-labelledby="results-title">
+        <div class="container">
+          <header class="section-head reveal">
+            <p class="kicker"><span>03</span>Results</p>
+            <h2 id="results-title">Consistent gains across backbones and benchmarks</h2>
+            <p class="lead">
+              We compare TRACE with Direct answering and four prompting strategies&nbsp;&mdash; Chain-of-Thought (CoT), Tree-of-Thought (ToT), Least-to-Most (LtM) and Cognitive Map (CM)&nbsp;&mdash; keeping the prompting scaffold identical and varying only the method-specific instructions.
+            </p>
+          </header>
+
+          <div class="gains reveal" data-gains>
+            <div class="gains-head">
+              <h3>TRACE vs. Direct prompting</h3>
+              <p class="gains-legend">
+                <span><i class="dot-a" aria-hidden="true"></i>Direct</span>
+                <span><i class="dot-b" aria-hidden="true"></i>TRACE</span>
+                <span class="gains-unit">Average accuracy</span>
+              </p>
+            </div>
+            <div class="gains-body">
+              <p class="gains-group">VSI-Bench</p>
+              <div class="db-row" style="--a: 52.61; --b: 60.15">
+                <span class="db-model">Gemini 3 Pro <small>proprietary</small></span>
+                <span class="db-track" aria-hidden="true"><span class="db-bar"></span><span class="db-dot db-dot-a"></span><span class="db-dot db-dot-b"></span></span>
+                <span class="db-vals">52.61 &rarr; <b>60.15</b></span>
+                <span class="db-delta">+7.54</span>
               </div>
-              <figcaption class="figure-caption">
-                <span class="caption-label">Method</span>
-                <p>
-                  TRACE aligns a global coordinate system with room layout,
-                  logs camera trajectory, and registers visible objects with
-                  key attributes, estimated positions, and spatial relations.
-                </p>
+              <div class="db-row" style="--a: 51.15; --b: 54.08">
+                <span class="db-model">o3 <small>proprietary</small></span>
+                <span class="db-track" aria-hidden="true"><span class="db-bar"></span><span class="db-dot db-dot-a"></span><span class="db-dot db-dot-b"></span></span>
+                <span class="db-vals">51.15 &rarr; <b>54.08</b></span>
+                <span class="db-delta">+2.93</span>
+              </div>
+              <div class="db-row" style="--a: 37.33; --b: 45.01">
+                <span class="db-model">GLM-4.5V <small>open weights</small></span>
+                <span class="db-track" aria-hidden="true"><span class="db-bar"></span><span class="db-dot db-dot-a"></span><span class="db-dot db-dot-b"></span></span>
+                <span class="db-vals">37.33 &rarr; <b>45.01</b></span>
+                <span class="db-delta">+7.68</span>
+              </div>
+              <div class="db-row" style="--a: 36.28; --b: 39.38">
+                <span class="db-model">Qwen2.5-VL-72B <small>open weights</small></span>
+                <span class="db-track" aria-hidden="true"><span class="db-bar"></span><span class="db-dot db-dot-a"></span><span class="db-dot db-dot-b"></span></span>
+                <span class="db-vals">36.28 &rarr; <b>39.38</b></span>
+                <span class="db-delta">+3.10</span>
+              </div>
+              <div class="db-row" style="--a: 39.79; --b: 41.42">
+                <span class="db-model">MiMo-VL-7B <small>open weights</small></span>
+                <span class="db-track" aria-hidden="true"><span class="db-bar"></span><span class="db-dot db-dot-a"></span><span class="db-dot db-dot-b"></span></span>
+                <span class="db-vals">39.79 &rarr; <b>41.42</b></span>
+                <span class="db-delta">+1.63</span>
+              </div>
+
+              <p class="gains-group">OST-Bench</p>
+              <div class="db-row" style="--a: 59.22; --b: 60.42">
+                <span class="db-model">Gemini 3 Pro <small>proprietary</small></span>
+                <span class="db-track" aria-hidden="true"><span class="db-bar"></span><span class="db-dot db-dot-a"></span><span class="db-dot db-dot-b"></span></span>
+                <span class="db-vals">59.22 &rarr; <b>60.42</b></span>
+                <span class="db-delta">+1.20</span>
+              </div>
+              <div class="db-row" style="--a: 62.65; --b: 65.04">
+                <span class="db-model">MiMo-VL-7B <small>open weights</small></span>
+                <span class="db-track" aria-hidden="true"><span class="db-bar"></span><span class="db-dot db-dot-a"></span><span class="db-dot db-dot-b"></span></span>
+                <span class="db-vals">62.65 &rarr; <b>65.04</b></span>
+                <span class="db-delta">+2.39</span>
+              </div>
+
+              <div class="db-axis" aria-hidden="true">
+                <span style="--t: 30">30</span>
+                <span style="--t: 40">40</span>
+                <span style="--t: 50">50</span>
+                <span style="--t: 60">60</span>
+                <span style="--t: 70">70</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="explorer reveal" data-explorer>
+            <div class="explorer-bar">
+              <div>
+                <h3 class="explorer-title">Full results</h3>
+                <p class="explorer-sub">Per-task scores for every prompting method. Pick a benchmark and a base model.</p>
+              </div>
+              <div class="explorer-controls">
+                <div class="segmented" role="group" aria-label="Benchmark">
+                  <button type="button" aria-pressed="true" data-bench="vsi">VSI-Bench</button>
+                  <button type="button" aria-pressed="false" data-bench="ost">OST-Bench</button>
+                </div>
+                <div class="chips" role="group" aria-label="Base model" data-model-chips></div>
+              </div>
+            </div>
+            <div class="table-wrap" tabindex="0" role="region" aria-label="Results table" data-table-wrap>
+              <noscript><p class="noscript-note">Enable JavaScript to browse the per-task results, or see Tables 1, 2 and 9 of the paper.</p></noscript>
+            </div>
+            <p class="table-note" data-table-note></p>
+          </div>
+
+          <div class="results-split">
+            <figure class="plate plate-compact reveal">
+              <button class="plate-media" type="button" data-zoom data-full="assets/figures/gain.webp" data-original="assets/figures/gain.png" aria-label="Enlarge Figure 3">
+                <picture>
+                  <source type="image/webp" srcset="assets/figures/gain.webp" />
+                  <img
+                    src="assets/figures/gain.png"
+                    width="1300"
+                    height="1155"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Figure 3. Radar chart of VSI-Bench gains over Direct prompting for CoT, ToT, LtM, CM and TRACE across Gemini 3 Pro, Qwen2.5-VL-72B, MiMo-VL-7B, o3 and GLM-4.5V. TRACE forms the outermost polygon."
+                  />
+                </picture>
+              </button>
+              <figcaption>
+                <span class="fig-num">Figure 3</span>
+                Performance gains over Direct prompting on VSI-Bench across model architectures and parameter scales.
               </figcaption>
             </figure>
 
-            <div class="method-notes reveal">
-              <article class="method-note">
-                <span class="note-index">Step 1</span>
-                <h3>Spatial Descriptor</h3>
-                <p>
-                  The model is prompted to emit schema-compliant TRACE before
-                  the final response instead of unconstrained rationale.
-                </p>
-              </article>
-              <article class="method-note">
-                <span class="note-index">Step 2</span>
-                <h3>TRACE Structure</h3>
-                <p>
-                  Meta Context, Trajectory, and Entity Registry are stored in a
-                  structured allocentric cache for inference-time reuse.
-                </p>
-              </article>
-              <article class="method-note">
-                <span class="note-index">Step 3</span>
-                <h3>Reasoning Parser</h3>
-                <p>
-                  Final answers are generated by jointly reasoning over the
-                  original video and the previously constructed TRACE.
-                </p>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="results">
-        <div class="container">
-          <div class="section-heading reveal">
-            <span class="section-kicker">Results</span>
-            <h2>Consistent Gains Across Models and Settings</h2>
-          </div>
-
-          <div class="metric-strip reveal">
-            <article class="metric-card metric-card-wide">
-              <span class="metric-label">VSI-Bench<br />Gemini 3 Pro</span>
-              <div class="metric-value" data-count="7.54" data-prefix="+">+7.54</div>
-              <p>Absolute gain over Direct prompting.</p>
-            </article>
-            <article class="metric-card">
-              <span class="metric-label">VSI-Bench<br />Qwen2.5-VL-72B</span>
-              <div class="metric-value" data-count="3.10" data-prefix="+">+3.10</div>
-              <p>Open-weight performance also improves under the same setup.</p>
-            </article>
-            <article class="metric-card">
-              <span class="metric-label">VSI-Bench<br />MiMo-VL-7B</span>
-              <div class="metric-value" data-count="1.63" data-prefix="+">+1.63</div>
-              <p>Compact models benefit from explicit geometric grounding.</p>
-            </article>
-            <article class="metric-card">
-              <span class="metric-label">OST-Bench<br />Gemini 3 Pro</span>
-              <div class="metric-value" data-count="1.20" data-prefix="+">+1.20</div>
-              <p>TRACE remains effective in multi-turn embodied scene understanding.</p>
-            </article>
-            <article class="metric-card">
-              <span class="metric-label">OST-Bench<br />MiMo-VL-7B</span>
-              <div class="metric-value" data-count="2.39" data-prefix="+">+2.39</div>
-              <p>The strongest uplift appears on the compact open-source model.</p>
-            </article>
-            <article class="metric-card">
-              <span class="metric-label">Ablation Signal</span>
-              <div class="metric-stack">
-                <span><strong>-5.24</strong> without Entity Registry</span>
-                <span><strong>-1.92</strong> without Trajectory</span>
-              </div>
-              <p>Entity grounding contributes the largest effect.</p>
-            </article>
-          </div>
-
-          <div class="results-grid">
-            <div class="results-copy reveal">
-              <span class="section-kicker">Reading the results</span>
-              <ul class="results-list">
-                <li>TRACE is the strongest method on VSI-Bench across Gemini 3 Pro, Qwen2.5-VL-72B, and MiMo-VL-7B.</li>
-                <li>On OST-Bench, TRACE improves over Direct by +1.20 on Gemini 3 Pro and +2.39 on MiMo-VL-7B.</li>
-                <li>One-stage inference is stronger than two-stage on Gemini and Qwen, while text-only remains competitive.</li>
-                <li>Cross-environment gains remain stable across ARKitScenes, ScanNet, and ScanNetPP.</li>
+            <div class="takeaways reveal">
+              <h3>Reading the results</h3>
+              <ul>
+                <li>
+                  <strong>Generic prompting can backfire.</strong> CoT lowers Qwen2.5-VL-72B from 36.28 to 29.78 on VSI-Bench, whereas TRACE raises it to 39.38.
+                </li>
+                <li>
+                  <strong>Ahead even when everything helps.</strong> Gemini 3 Pro benefits from every structured strategy, and TRACE still leads with 60.15 against 59.72 for the runner-up, Cognitive Map.
+                </li>
+                <li>
+                  <strong>Multi-turn settings.</strong> On OST-Bench, existing prompting strategies give only marginal gains, while TRACE adds +1.20 on Gemini 3 Pro and +2.39 on MiMo-VL-7B, where spatial prompts (CM, TRACE) beat linguistic ones (CoT, ToT, LtM).
+                </li>
+                <li>
+                  <strong>Known limitation.</strong> As a static global map, TRACE can hurt some agent-state predictions: position judgement on Gemini 3 Pro drops from 71.43 to 54.29.
+                </li>
               </ul>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <div class="mini-figure-grid">
-              <figure class="mini-figure reveal">
-                <div class="media-frame" style="--ratio: 561 / 498;">
-                  <img
-                    src="assets/figures/gain.png"
-                    alt="Performance gains across models on VSI-Bench."
-                    width="561"
-                    height="498"
-                    loading="lazy"
-                  />
-                </div>
-                <figcaption class="figure-caption">
-                  <span class="caption-label">VSI Gains</span>
-                  <p>TRACE yields consistent, state-of-the-art gains over Direct prompting across backbones and scales.</p>
-                </figcaption>
-              </figure>
+      <section class="section section-band" id="analysis" aria-labelledby="analysis-title">
+        <div class="container">
+          <header class="section-head reveal">
+            <p class="kicker"><span>04</span>Analysis</p>
+            <h2 id="analysis-title">What makes TRACE work&nbsp;&mdash; and where MLLMs still struggle</h2>
+          </header>
 
-              <figure class="mini-figure reveal">
-                <div class="media-frame" style="--ratio: 1249 / 768;">
-                  <img
-                    src="assets/figures/exp.png"
-                    alt="Decomposition analysis of spatial descriptor and reasoning parser."
-                    width="1249"
-                    height="768"
-                    loading="lazy"
-                  />
-                </div>
-                <figcaption class="figure-caption">
-                  <span class="caption-label">Decomposition</span>
-                  <p>The Qwen series still trails Gemini 3 on both spatial reasoning and visual perception.</p>
-                </figcaption>
+          <div class="analysis-grid">
+            <article class="card reveal">
+              <p class="card-tag">Prediction settings &middot; Table 3</p>
+              <h3>Building the map is part of the reasoning</h3>
+              <p>
+                The same MLLM writes TRACE, which is then used in one pass (one-stage), fed back with the video as extra context (two-stage), or given to an LLM on its own (text-only).
+              </p>
+              <div class="bars" role="img" aria-label="VSI-Bench average. Gemini 3 Pro: video direct 52.61, one-stage 60.15, two-stage 58.52, text-only 52.27. Qwen2.5-VL-72B: video direct 37.58, one-stage 38.92, two-stage 32.85, text-only 31.11.">
+                <p class="bars-group">Gemini 3 Pro</p>
+                <div class="bar is-base" style="--v: 52.61"><span class="bar-label">Video direct</span><span class="bar-track"><span class="bar-fill"></span></span><span class="bar-val">52.61</span></div>
+                <div class="bar is-ours" style="--v: 60.15"><span class="bar-label">One-stage</span><span class="bar-track"><span class="bar-fill"></span></span><span class="bar-val">60.15</span></div>
+                <div class="bar" style="--v: 58.52"><span class="bar-label">Two-stage</span><span class="bar-track"><span class="bar-fill"></span></span><span class="bar-val">58.52</span></div>
+                <div class="bar" style="--v: 52.27"><span class="bar-label">Text-only</span><span class="bar-track"><span class="bar-fill"></span></span><span class="bar-val">52.27</span></div>
+                <p class="bars-group">Qwen2.5-VL-72B</p>
+                <div class="bar is-base" style="--v: 37.58"><span class="bar-label">Video direct</span><span class="bar-track"><span class="bar-fill"></span></span><span class="bar-val">37.58</span></div>
+                <div class="bar is-ours" style="--v: 38.92"><span class="bar-label">One-stage</span><span class="bar-track"><span class="bar-fill"></span></span><span class="bar-val">38.92</span></div>
+                <div class="bar" style="--v: 32.85"><span class="bar-label">Two-stage</span><span class="bar-track"><span class="bar-fill"></span></span><span class="bar-val">32.85</span></div>
+                <div class="bar" style="--v: 31.11"><span class="bar-label">Text-only</span><span class="bar-track"><span class="bar-fill"></span></span><span class="bar-val">31.11</span></div>
+              </div>
+              <p class="card-insight">
+                One-stage beats two-stage on both models: constructing TRACE helps, not just the finished text. With Gemini 3 Pro, text-only TRACE (52.27) is on par with answering from the video itself (52.61).
+              </p>
+            </article>
+
+            <article class="card reveal">
+              <p class="card-tag">Representations &amp; ablations &middot; Table 4</p>
+              <h3>A richer text representation of space</h3>
+              <p>
+                Text-only inference with Qwen2.5-VL-72B isolates the representation itself and the contribution of each TRACE component.
+              </p>
+              <div class="bars" style="--max: 35" role="img" aria-label="VSI-Bench average, text-only, Qwen2.5-VL-72B. Cognitive Map 21.41, Spatial Caption 27.58, TRACE 31.11, TRACE without trajectory 29.19, TRACE without entity registry 25.87.">
+                <p class="bars-group">Text representation</p>
+                <div class="bar" style="--v: 21.41"><span class="bar-label">Cognitive Map</span><span class="bar-track"><span class="bar-fill"></span></span><span class="bar-val">21.41</span></div>
+                <div class="bar" style="--v: 27.58"><span class="bar-label">Spatial Caption</span><span class="bar-track"><span class="bar-fill"></span></span><span class="bar-val">27.58</span></div>
+                <div class="bar is-ours" style="--v: 31.11"><span class="bar-label">TRACE</span><span class="bar-track"><span class="bar-fill"></span></span><span class="bar-val">31.11</span></div>
+                <p class="bars-group">Ablation</p>
+                <div class="bar is-traj" style="--v: 29.19"><span class="bar-label">w/o Trajectory</span><span class="bar-track"><span class="bar-fill"></span></span><span class="bar-val">29.19</span></div>
+                <div class="bar is-ent" style="--v: 25.87"><span class="bar-label">w/o Entity Registry</span><span class="bar-track"><span class="bar-fill"></span></span><span class="bar-val">25.87</span></div>
+              </div>
+              <p class="card-insight">
+                TRACE beats the Cognitive Map by 9.70 points and spatial captions by 3.53. Dropping the entity registry costs 5.24 points, mostly on object tasks; dropping the trajectory costs 1.92, mostly on distance and order.
+              </p>
+            </article>
+
+            <article class="card card-wide card-figure reveal">
+              <figure class="card-media">
+                <button class="plate-media" type="button" data-zoom data-full="assets/figures/vis-2317.webp" data-original="assets/figures/vis.png" aria-label="Enlarge Figure 4">
+                  <picture>
+                    <source type="image/webp" srcset="assets/figures/vis-1100.webp 1100w, assets/figures/vis-2317.webp 2317w" sizes="(min-width: 1100px) 520px, 92vw" />
+                    <img
+                      src="assets/figures/vis.png"
+                      width="2317"
+                      height="2432"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Figure 4. Two frames of a living room and kitchen with the question which of refrigerator, tv, table and chair is closest to the dishwasher. The Cognitive Map answer C (table) is wrong; TRACE answers D (chair) correctly because its entity registry records a dining chair tucked under the table on the side facing the dishwasher."
+                    />
+                  </picture>
+                </button>
               </figure>
+              <div class="card-copy">
+                <p class="card-tag">Qualitative &middot; Figure 4</p>
+                <h3>Finer-grained than a cognitive map</h3>
+                <p>
+                  Asked which object is closest to the dishwasher, a model reasoning over a coarse cognitive map picks the table. TRACE's entity registry records a dining chair tucked under the table on the side facing the dishwasher, which yields the correct answer.
+                </p>
+                <p class="card-quote">
+                  &ldquo;The CM lacks the 3D granularity required for many spatial reasoning tasks.&rdquo;
+                </p>
+              </div>
+            </article>
+
+            <article class="card reveal">
+              <p class="card-tag">Decomposition &middot; Figure 5</p>
+              <h3>Separating perception from reasoning</h3>
+              <p>
+                In the text-only setting, one MLLM writes TRACE (<em>Spatial Descriptor</em>) and another answers from it (<em>Reasoning Parser</em>).
+              </p>
+              <figure class="card-media">
+                <button class="plate-media" type="button" data-zoom data-full="assets/figures/exp.webp" data-original="assets/figures/exp.png" aria-label="Enlarge Figure 5">
+                  <picture>
+                    <source type="image/webp" srcset="assets/figures/exp.webp" />
+                    <img
+                      src="assets/figures/exp.png"
+                      width="1800"
+                      height="1107"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Figure 5. Bar chart of text-only VSI-Bench accuracy for spatial descriptors Gemini 3 Pro, Qwen2.5-VL-72B and Qwen2.5-VL-7B combined with reasoning parsers Gemini 3 Pro, Qwen2.5-72B and Qwen2.5-7B. Gemini 3 Pro as both reaches 52.27."
+                    />
+                  </picture>
+                </button>
+              </figure>
+              <p class="card-insight">
+                Against Gemini 3 Pro on both sides (52.27), swapping in Qwen2.5-VL-72B as the descriptor costs more (36.11) than swapping the parser (40.86). Within Qwen, shrinking the descriptor from 72B to 7B barely matters (31.11&nbsp;&rarr;&nbsp;29.08), while shrinking the parser does (31.11&nbsp;&rarr;&nbsp;24.06).
+              </p>
+            </article>
+
+            <article class="card reveal">
+              <p class="card-tag">Token efficiency &middot; Table 10</p>
+              <h3>What the map costs</h3>
+              <p>
+                Writing TRACE adds output tokens, and how many depends on the backbone. On MiMo-VL-7B and GLM-4.5V it is cheaper than ToT and LtM while scoring higher; on Gemini 3 Pro, o3 and Qwen2.5-VL-72B it is the most token-intensive method.
+              </p>
+              <div class="mini-table-wrap" tabindex="0" role="region" aria-label="Average output tokens per method">
+                <table class="mini-table">
+                  <caption>Average output tokens</caption>
+                  <thead>
+                    <tr><th scope="col">Method</th><th scope="col">GLM-4.5V</th><th scope="col">MiMo-VL-7B</th><th scope="col">Qwen2.5-VL-72B</th><th scope="col">o3</th><th scope="col">Gemini 3 Pro</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><th scope="row">Direct</th><td>405</td><td>337</td><td>3</td><td>4</td><td>334</td></tr>
+                    <tr><th scope="row">CoT</th><td>568</td><td>579</td><td>130</td><td>76</td><td>480</td></tr>
+                    <tr><th scope="row">ToT</th><td>1,080</td><td>1,133</td><td>309</td><td>352</td><td>451</td></tr>
+                    <tr><th scope="row">LtM</th><td>990</td><td>1,097</td><td>230</td><td>220</td><td>572</td></tr>
+                    <tr><th scope="row">CM</th><td>722</td><td>724</td><td>225</td><td>81</td><td>403</td></tr>
+                    <tr class="is-ours"><th scope="row">TRACE</th><td>968</td><td>738</td><td>756</td><td>435</td><td>844</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="card-insight">
+                Explicitly writing a structured map loads the context with a spatial cache; making these traces more compact is left to future work.
+              </p>
+            </article>
+
+            <article class="card card-wide reveal">
+              <div class="card-split">
+                <div>
+                  <p class="card-tag">Cross-environment &middot; Figure 6</p>
+                  <h3>Robust across scene sources</h3>
+                </div>
+                <p>
+                  Stratifying VSI-Bench by its underlying datasets&nbsp;&mdash; ARKitScenes, ScanNet and ScanNetPP&nbsp;&mdash; TRACE beats Direct prompting in 14 of 15 backbone&nbsp;&times;&nbsp;source combinations, so its gains are not tied to one type of environment.
+                </p>
+              </div>
+              <figure class="card-media card-media-wide">
+                <button class="plate-media" type="button" data-zoom data-full="assets/figures/stratified.webp" data-original="assets/figures/stratified.png" aria-label="Enlarge Figure 6">
+                  <picture>
+                    <source type="image/webp" srcset="assets/figures/stratified.webp" />
+                    <img
+                      src="assets/figures/stratified.png"
+                      width="2600"
+                      height="853"
+                      loading="lazy"
+                      decoding="async"
+                      alt="Figure 6. Three radar charts of VSI-Bench accuracy per prompting method for Gemini 3 Pro, Qwen2.5-VL-72B, MiMo-VL-7B, o3 and GLM-4.5V, computed separately on ARKitScenes, ScanNet and ScanNetPP scenes."
+                    />
+                  </picture>
+                </button>
+              </figure>
+            </article>
+          </div>
+
+          <div class="limits reveal">
+            <div>
+              <h3>Limitations</h3>
+              <ul>
+                <li>TRACE is a static allocentric representation, which can decouple it from the fast egocentric updates needed for precise agent-state tracking in multi-turn settings.</li>
+                <li>For a fair comparison the representation is generated by the MLLM itself; specialized visual expert models could make the scene structure more accurate.</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Looking ahead</h3>
+              <ul>
+                <li>A streaming TRACE that incrementally updates the trajectory and entity registry as new observations arrive.</li>
+                <li>Internalizing TRACE-style reasoning through training, using TRACE to build supervision for fine-tuning and reinforcement learning.</li>
+                <li>Compact traces for low-latency embodied agents, and tasks beyond QA such as navigation, planning and manipulation.</li>
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section" id="gallery">
-        <div class="container">
-          <div class="section-heading reveal">
-            <span class="section-kicker">Figure Gallery</span>
-            <h2>Core Visuals from the Paper</h2>
+      <section class="section section-ink" id="prompt" aria-labelledby="prompt-title">
+        <div class="container prompt-grid">
+          <div class="prompt-intro reveal">
+            <p class="kicker"><span>05</span>Use TRACE</p>
+            <h2 id="prompt-title">Run TRACE on your own MLLM</h2>
+            <p class="lead">
+              TRACE is training-free: a system prompt that defines the room-aligned frame and the YAML schema, plus a short user prompt. This is the prompt listed in Appendix&nbsp;A of the paper.
+            </p>
+            <ol class="prompt-steps">
+              <li>
+                <strong>Set the system prompt</strong>
+                <span>Fill <code>{POST_PROMPT}</code> with the numerical-answer or multiple-choice instruction.</span>
+              </li>
+              <li>
+                <strong>Send the video and the question</strong>
+                <span>Append the question, plus the options for multiple-choice questions, to the user prompt.</span>
+              </li>
+              <li>
+                <strong>Parse the last line</strong>
+                <span>The model writes its TRACE first and ends with <code>Answer: `X`</code>.</span>
+              </li>
+            </ol>
           </div>
 
-          <div class="gallery-grid">
-            <button
-              class="gallery-card span-7 reveal"
-              type="button"
-              data-image="assets/figures/teaser.png"
-              data-title="Teaser"
-              data-caption="Motivation for TRACE in video-based spatial reasoning: from egocentric video and query to textual allocentric context and structured spatial QA."
-            >
-              <span class="gallery-media media-frame artboard-frame" style="--ratio: 4330 / 2205;">
-                <img
-                  src="assets/figures/teaser.png"
-                  alt="Teaser figure."
-                  width="4330"
-                  height="2205"
-                  loading="lazy"
-                />
-              </span>
-              <span class="gallery-copy">
-                <strong>Teaser</strong>
-                <span>Motivation for text-based allocentric reasoning from egocentric video.</span>
-              </span>
-            </button>
+          <div class="code-window reveal" data-tabs>
+            <div class="code-bar">
+              <div class="code-tabs" role="tablist" aria-label="Prompt parts">
+                <button type="button" role="tab" id="tab-system" aria-selected="true" aria-controls="prompt-system">System<span class="tab-extra"> prompt</span></button>
+                <button type="button" role="tab" id="tab-user" aria-selected="false" aria-controls="prompt-user" tabindex="-1">User<span class="tab-extra"> prompt</span></button>
+                <button type="button" role="tab" id="tab-assembly" aria-selected="false" aria-controls="prompt-assembly" tabindex="-1">Assembly</button>
+              </div>
+              <button class="copy-btn copy-btn-dark" type="button" data-copy-active>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="11" rx="2" /><path d="M15.5 8.5V6.5a2 2 0 0 0-2-2h-7a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h2" /></svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre class="code-panel" id="prompt-system" role="tabpanel" aria-labelledby="tab-system" tabindex="0"><code>You are an expert specialized in solving spatial understanding questions using text descriptions of egocentric video sequences.
 
-            <button
-              class="gallery-card span-5 reveal"
-              type="button"
-              data-image="assets/figures/method.png"
-              data-title="Method"
-              data-caption="TRACE aligns a global coordinate system with room layout, logs camera trajectory, and registers grounded entities with attributes, positions, and relations."
-            >
-              <span class="gallery-media media-frame" style="--ratio: 4348 / 2042;">
-                <img
-                  src="assets/figures/method.png"
-                  alt="Method figure."
-                  width="4348"
-                  height="2042"
-                  loading="lazy"
-                />
-              </span>
-              <span class="gallery-copy">
-                <strong>Method</strong>
-                <span>Global coordinates, trajectory logging, entity registry, and prompting interface.</span>
-              </span>
-            </button>
+You are given:
+- an egocentric video of an indoor environment,
+- a question about that video.
 
-            <button
-              class="gallery-card span-4 reveal"
-              type="button"
-              data-image="assets/figures/gain.png"
-              data-title="VSI Gains"
-              data-caption="TRACE delivers state-of-the-art gains across multiple MLLM backbones and parameter scales."
-            >
-              <span class="gallery-media media-frame" style="--ratio: 561 / 498;">
-                <img
-                  src="assets/figures/gain.png"
-                  alt="Performance gain figure."
-                  width="561"
-                  height="498"
-                  loading="lazy"
-                />
-              </span>
-              <span class="gallery-copy">
-                <strong>VSI Gains</strong>
-                <span>Consistent improvements over Direct prompting.</span>
-              </span>
-            </button>
+You need to firstly generate a structured "Textual Representation of Allocentric Context" derived from the egocentric video, and then answer the question as accurately as possible.
 
-            <button
-              class="gallery-card span-4 reveal"
-              type="button"
-              data-image="assets/figures/exp.png"
-              data-title="Decomposition"
-              data-caption="Decompositional analysis of the reasoning parser and spatial descriptor. The Qwen series still lags behind Gemini 3 on both spatial reasoning and visual perception."
-            >
-              <span class="gallery-media media-frame" style="--ratio: 1249 / 768;">
-                <img
-                  src="assets/figures/exp.png"
-                  alt="Decomposition figure."
-                  width="1249"
-                  height="768"
-                  loading="lazy"
-                />
-              </span>
-              <span class="gallery-copy">
-                <strong>Decomposition</strong>
-                <span>Reasoning parser vs. spatial descriptor bottlenecks.</span>
-              </span>
-            </button>
+HOW TO GENERATE THE TEXTUAL REPRESENTATION OF ALLOCENTRIC CONTEXT:
 
-            <button
-              class="gallery-card span-8 reveal"
-              type="button"
-              data-image="assets/figures/vis.png"
-              data-title="Representation Comparison"
-              data-caption="TRACE is more effective than Cognitive Map because it preserves the 3D granularity required for complex spatial reasoning."
-            >
-              <span class="gallery-media media-frame" style="--ratio: 2317 / 2432;">
-                <img
-                  src="assets/figures/vis.png"
-                  alt="TRACE versus cognitive map figure."
-                  width="2317"
-                  height="2432"
-                  loading="lazy"
-                />
-              </span>
-              <span class="gallery-copy">
-                <strong>Representation Comparison</strong>
-                <span>TRACE preserves the 3D granularity that Cognitive Map misses.</span>
-              </span>
-            </button>
+1. Coordinate System Rules (Room-Aligned Allocentric Frame)
+- Origin: the camera starting position is exactly [0.0, 0.0] on the floor plane.
+- Major Axes (+Y / +X): Align the coordinate system with the dominant walls or floor grid of the room rather than the camera's initial viewing direction:
+  - define '+Y' along that dominant structural direction;
+  - define '+X' as the perpendicular rightward direction in the floor plane.
+- Units are approximate meters.
+- Maintain one globally consistent coordinate frame throughout the video. If the camera moves into another room, preserve the same global frame rather than resetting coordinates.
 
-            <button
-              class="gallery-card span-4 reveal"
-              type="button"
-              data-image="assets/figures/stratified.png"
-              data-title="Cross-Environment Generalization"
-              data-caption="TRACE achieves robust performance gains across ARKitScenes, ScanNet, and ScanNetPP without overfitting to a single environment family."
-            >
-              <span class="gallery-media media-frame" style="--ratio: 1215 / 398;">
-                <img
-                  src="assets/figures/stratified.png"
-                  alt="Stratified analysis figure."
-                  width="1215"
-                  height="398"
-                  loading="lazy"
-                />
-              </span>
-              <span class="gallery-copy">
-                <strong>Cross-Environment Generalization</strong>
-                <span>Robust gains across ARKitScenes, ScanNet, and ScanNetPP.</span>
-              </span>
-            </button>
+2. Meta-Context Rules
+You must infer and report:
+- room_topology: the overall spatial structure of the observed environment, such as 'rectangular bedroom', 'L-shaped office', or 'narrow hallway connected to kitchen'
+- grid_alignment: the structural cue used to define the allocentric axes
+- initial_camera_heading: the camera's initial facing direction relative to the room-aligned grid
+
+3. Trajectory Rules
+You must log the camera path continuously. Output a trajectory step for every significant camera movement.
+- step: Sequential ID.
+- time: Timestamp of the step (e.g., "2s")
+- pos: Estimated [x, y] of the camera.
+- facing: Cardinal direction and axis (e.g., "North (+Y)").
+- action: Short description of the camera motion or viewpoint change
+
+4. Entity Registry Rules
+You must register every visible entity individually. Never group objects. For each entity, include:
+- id: unique identifier such as chair_01, door_01
+- category
+- first_seen_at
+- estimated_pos: [x, y]
+- approx_size: [width, height, depth]
+- visual_signature: short appearance-based description for disambiguation
+- spatial_relation: at least one relation to a nearby anchor or structure
+- optional state when applicable (e.g., door open/closed, drawer open/closed)
+- optional orientation when meaningful (e.g., bed headboard against east wall)
+
+Output Format (Strict YAML)
+The textual representation must be a single YAML document with three top-level sections: Meta_Context, Trajectory, and Entity_Registry.
+
+Meta_Context:
+  room_topology: "&lt;room shape/type&gt;"
+  grid_alignment: "&lt;what +Y/+X is aligned with&gt;"
+  initial_camera_heading: "&lt;heading relative to room grid&gt;"
+
+Trajectory:
+  # Track movement relative to the ROOM GRID, not just camera view.
+  - step: 0
+    time: "0s"
+    pos: [0.0, 0.0]
+    facing: "NW (-X,+Y)"
+    action: "Standing near entrance, panning across the room"
+  - step: 1
+    time: "4s"
+    pos: [0.0, 1.8]
+    facing: "North (+Y)"
+    action: "Moves forward along the main room axis"
+  - step: 2
+    time: "8s"
+    pos: [0.2, 3.5]
+    facing: "East (+X)"
+    action: "Turning right to inspect bedside area"
+
+Entity_Registry:
+  # The Map. Coordinates are strictly [x, y] in meters.
+  - id: "door_01"
+    category: "door"
+    first_seen_at: "0s"
+    state: "open"
+    estimated_pos: [0.8, 0.0]
+    approx_size: [0.9, 2.1, 0.1]
+    visual_signature: "White hinged door with silver handle"
+    spatial_relation: "At the entrance boundary of the bedroom"
+  - id: "bed_01"
+    category: "bed"
+    first_seen_at: "5s"
+    estimated_pos: [1.8, 2.8]
+    approx_size: [1.6, 2.0, 0.6]
+    orientation: "Headboard against +X wall"
+    visual_signature: "Double bed with white sheets and dark frame"
+    spatial_relation: "Against the right wall, beside nightstand_01"
+  - id: "nightstand_01"
+    category: "nightstand"
+    first_seen_at: "7s"
+    estimated_pos: [1.9, 2.0]
+    approx_size: [0.5, 0.6, 0.4]
+    visual_signature: "Small wooden bedside table"
+    spatial_relation: "In front of bed_01 near the headboard"
+  - id: "trash_bin_01"
+    category: "trash_bin"
+    first_seen_at: "10s"
+    estimated_pos: [-1.3, 2.4]
+    approx_size: [0.3, 0.4, 0.3]
+    visual_signature: "Black cylindrical trash bin"
+    spatial_relation: "Near the left wall below desk_01"
+
+Hard Rules
+- No omissions: if an object occupies more than 1% of pixels, it must be listed (including partial window/door edges).
+- Force coordinates: you must estimate [x,y] for every listed item.
+- Exhaustive count: never group items; if there are 6 chairs, I expect 6 entries in the registry.
+- Global consistency: trajectory and entity coordinates must agree with one another.
+
+Answer format:
+- {POST_PROMPT}
+- Do NOT add extra text on the final answer line (no units, no explanations).</code></pre>
+            <pre class="code-panel" id="prompt-user" role="tabpanel" aria-labelledby="tab-user" tabindex="0" hidden><code>Reasoning protocol:
+- Read the question and analyze the visual content carefully.
+- Generate the textual representation of allocentric context as required to determine spatial relations and approximate distances.
+- You may think through the problem internally, but do not show your reasoning.
+- Directly provide the final answer in the required format.
+
+Output format:
+Structured Textual Allocentric Representation:
+
+Answer: `X`
+
+Now follow this protocol to answer the question below.</code></pre>
+            <pre class="code-panel" id="prompt-assembly" role="tabpanel" aria-labelledby="tab-assembly" tabindex="0" hidden><code># {POST_PROMPT} in the system prompt depends on the question type
+POST_PROMPT_NA  = "Please answer the question using a single word or phrase enclosed in backticks."
+POST_PROMPT_MCA = "Answer with the option's letter from the given choices only, enclosed in backticks."
+
+# Numerical-answer question
+prompt = USER_PROMPT + "\n\nQuestion:\n" + question + "\n"
+
+# Multiple-choice question
+prompt = (USER_PROMPT + "\n\nQuestion:\n" + question
+          + "\n\nOptions:\n" + options_str + "\n")
+
+# The final answer must appear on the last line:  Answer: `X`</code></pre>
           </div>
         </div>
       </section>
 
-      <section class="section" id="citation">
+      <section class="section" id="citation" aria-labelledby="citation-title">
         <div class="container">
-          <div class="section-heading reveal">
-            <span class="section-kicker">Citation &amp; Resources</span>
-            <h2>Use TRACE in Your Work</h2>
-          </div>
+          <header class="section-head reveal">
+            <p class="kicker"><span>06</span>Citation</p>
+            <h2 id="citation-title">Cite TRACE</h2>
+          </header>
 
-          <div class="citation-grid">
-            <div class="citation-copy reveal">
-              <p class="lead compact">
-                TRACE is a prompting approach that uses the Textual
-                Representation of Allocentric Context from Egocentric Video as
-                an intermediate reasoning trace for spatial understanding.
+          <div class="cite-grid">
+            <div class="cite-info reveal">
+              <p class="reference">
+                Jiacheng Hua, Yishu Yin, Yuhang Wu, Tai Wang, Yifei Huang, and Miao Liu. 2026. Unleashing Spatial Reasoning in Multimodal Large Language Models via Textual Representation Guided Reasoning. In <i>Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume&nbsp;1: Long Papers)</i>, pages 13616&ndash;13637, San Diego, California, United States. Association for Computational Linguistics.
               </p>
-
-              <div class="citation-meta">
+              <dl class="meta-list">
                 <div>
-                  <span class="section-kicker">Venue</span>
-                  <p>ACL 2026 Main Conference</p>
+                  <dt>Venue</dt>
+                  <dd>ACL 2026 Main Conference, Oral &middot; San Diego, July 2&ndash;7, 2026</dd>
                 </div>
                 <div>
-                  <span class="section-kicker">Location</span>
-                  <p>San Diego, California, USA</p>
+                  <dt>Anthology</dt>
+                  <dd><a href="https://aclanthology.org/2026.acl-long.620/" target="_blank" rel="noopener">2026.acl-long.620</a></dd>
                 </div>
-              </div>
-
-              <div class="hero-actions left">
-                <a
-                  class="button button-primary"
-                  href="assets/paper/trace_acl2026.pdf"
-                  target="_blank"
-                  rel="noreferrer"
-                  >Read Paper</a
-                >
-                <a
-                  class="button button-secondary js-arxiv"
-                  href=""
-                  target="_blank"
-                  rel="noreferrer"
-                  hidden
-                  >View on arXiv</a
-                >
-              </div>
-
-              <div class="contact-block">
-                <span class="section-kicker">Contact</span>
-                <a href="mailto:hjc21@mails.tsinghua.edu.cn">Jiacheng Hua: hjc21@mails.tsinghua.edu.cn</a>
-                <a href="mailto:miaoliu@mail.tsinghua.edu.cn">Miao Liu: miaoliu@mail.tsinghua.edu.cn</a>
-              </div>
-
-              <p class="citation-line citation-reference">
-                Jiacheng Hua, Yishu Yin, Yuhang Wu, Tai Wang, Yifei Huang, and
-                Miao Liu. 2026. <em>Unleashing Spatial Reasoning in Multimodal
-                Large Language Models via Textual Representation Guided
-                Reasoning</em>. In <em>Proceedings of the 64th Annual Meeting of
-                the Association for Computational Linguistics (Volume 1: Long
-                Papers)</em>, San Diego, California, USA. Association for
-                Computational Linguistics.
-              </p>
+                <div>
+                  <dt>DOI</dt>
+                  <dd><a href="https://doi.org/10.18653/v1/2026.acl-long.620" target="_blank" rel="noopener">10.18653/v1/2026.acl-long.620</a></dd>
+                </div>
+                <div>
+                  <dt>arXiv</dt>
+                  <dd><a href="https://arxiv.org/abs/2603.23404" target="_blank" rel="noopener">2603.23404</a></dd>
+                </div>
+                <div>
+                  <dt>Contact</dt>
+                  <dd class="contact">
+                    <a href="mailto:hjc21@mails.tsinghua.edu.cn"><span>Jiacheng Hua</span>hjc21@mails.tsinghua.edu.cn</a>
+                    <a href="mailto:miaoliu@mail.tsinghua.edu.cn"><span>Miao Liu</span>miaoliu@mail.tsinghua.edu.cn</a>
+                  </dd>
+                </div>
+              </dl>
             </div>
 
-            <div class="bibtex-panel reveal" id="citation-block">
-              <div class="panel-head">
-                <span class="section-kicker">BibTeX</span>
-                <div class="panel-actions">
-                  <div class="bibtex-toggle" role="tablist" aria-label="BibTeX variant">
-                    <button
-                      class="bibtex-tab is-active"
-                      type="button"
-                      role="tab"
-                      aria-selected="true"
-                      data-bibtex-tab="acl"
-                    >
-                      ACL
-                    </button>
-                    <button
-                      class="bibtex-tab"
-                      type="button"
-                      role="tab"
-                      aria-selected="false"
-                      data-bibtex-tab="arxiv"
-                    >
-                      arXiv
-                    </button>
-                  </div>
-                  <button class="copy-button" type="button" data-copy-target="bibtex-snippet-acl">
-                    Copy
-                  </button>
+            <div class="bibtex reveal" data-tabs>
+              <div class="code-bar code-bar-light">
+                <div class="code-tabs" role="tablist" aria-label="BibTeX entry">
+                  <button type="button" role="tab" id="tab-bib-acl" aria-selected="true" aria-controls="bibtex-acl">ACL Anthology</button>
+                  <button type="button" role="tab" id="tab-bib-arxiv" aria-selected="false" aria-controls="bibtex-arxiv" tabindex="-1">arXiv</button>
                 </div>
+                <button class="copy-btn" type="button" data-copy-active>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="11" rx="2" /><path d="M15.5 8.5V6.5a2 2 0 0 0-2-2h-7a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h2" /></svg>
+                  <span>Copy</span>
+                </button>
               </div>
-              <pre class="bibtex-snippet is-active" id="bibtex-snippet-acl"><code>@inproceedings{hua-etal-2026-unleashing,
-  title     = {Unleashing Spatial Reasoning in Multimodal Large Language Models via Textual Representation Guided Reasoning},
-  author    = {Hua, Jiacheng and Yin, Yishu and Wu, Yuhang and Wang, Tai and Huang, Yifei and Liu, Miao},
-  booktitle = {Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
-  month     = jul,
-  year      = {2026},
-  address   = {San Diego, California, USA},
-  publisher = {Association for Computational Linguistics},
-  note      = {To appear}
+              <pre class="code-panel bib-panel" id="bibtex-acl" role="tabpanel" aria-labelledby="tab-bib-acl" tabindex="0"><code><span class="b-t">@inproceedings</span>{<span class="b-key">hua-etal-2026-unleashing</span>,
+  <span class="b-f">title</span>     = {Unleashing Spatial Reasoning in Multimodal Large Language Models via Textual Representation Guided Reasoning},
+  <span class="b-f">author</span>    = {Hua, Jiacheng and Yin, Yishu and Wu, Yuhang and Wang, Tai and Huang, Yifei and Liu, Miao},
+  <span class="b-f">editor</span>    = {Liakata, Maria and Moreira, Viviane P. and Zhang, Jiajun and Jurgens, David},
+  <span class="b-f">booktitle</span> = {Proceedings of the 64th Annual Meeting of the {A}ssociation for {C}omputational {L}inguistics (Volume 1: Long Papers)},
+  <span class="b-f">month</span>     = jul,
+  <span class="b-f">year</span>      = {2026},
+  <span class="b-f">address</span>   = {San Diego, California, United States},
+  <span class="b-f">publisher</span> = {Association for Computational Linguistics},
+  <span class="b-f">url</span>       = {https://aclanthology.org/2026.acl-long.620/},
+  <span class="b-f">doi</span>       = {10.18653/v1/2026.acl-long.620},
+  <span class="b-f">pages</span>     = {13616--13637},
+  <span class="b-f">ISBN</span>      = {979-8-89176-390-6}
 }</code></pre>
-              <pre class="bibtex-snippet" id="bibtex-snippet-arxiv" hidden><code>@misc{hua2026unleashingspatialreasoningmultimodal,
-  title         = {Unleashing Spatial Reasoning in Multimodal Large Language Models via Textual Representation Guided Reasoning},
-  author        = {Hua, Jiacheng and Yin, Yishu and Wu, Yuhang and Wang, Tai and Huang, Yifei and Liu, Miao},
-  year          = {2026},
-  eprint        = {2603.23404},
-  archivePrefix = {arXiv},
-  primaryClass  = {cs.CV},
-  url           = {https://arxiv.org/abs/2603.23404}
+              <pre class="code-panel bib-panel" id="bibtex-arxiv" role="tabpanel" aria-labelledby="tab-bib-arxiv" tabindex="0" hidden><code><span class="b-t">@misc</span>{<span class="b-key">hua2026unleashingspatialreasoningmultimodal</span>,
+  <span class="b-f">title</span>         = {Unleashing Spatial Reasoning in Multimodal Large Language Models via Textual Representation Guided Reasoning},
+  <span class="b-f">author</span>        = {Hua, Jiacheng and Yin, Yishu and Wu, Yuhang and Wang, Tai and Huang, Yifei and Liu, Miao},
+  <span class="b-f">year</span>          = {2026},
+  <span class="b-f">eprint</span>        = {2603.23404},
+  <span class="b-f">archivePrefix</span> = {arXiv},
+  <span class="b-f">primaryClass</span>  = {cs.CV},
+  <span class="b-f">url</span>           = {https://arxiv.org/abs/2603.23404}
 }</code></pre>
             </div>
           </div>
@@ -704,21 +996,20 @@
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <p>TRACE: Textual Representation of Allocentric Context from Egocentric Video.</p>
+        <p class="footer-brand"><strong>TRACE</strong> Textual Representation of Allocentric Context from Egocentric Video</p>
+        <p>ACL 2026 &middot; San Diego</p>
       </div>
     </footer>
 
-    <div class="lightbox" id="lightbox" hidden>
-      <button class="lightbox-close" type="button" aria-label="Close figure viewer">
-        Close
-      </button>
-      <figure class="lightbox-figure">
-        <img src="" alt="" />
-        <figcaption>
-          <strong class="lightbox-title"></strong>
-          <span class="lightbox-caption"></span>
-        </figcaption>
-      </figure>
-    </div>
+    <dialog class="lightbox" data-lightbox aria-label="Figure viewer">
+      <div class="lightbox-frame"></div>
+      <div class="lightbox-bar">
+        <p class="lightbox-caption"></p>
+        <a class="lightbox-original" href="#" target="_blank" rel="noopener">Full resolution</a>
+        <button class="lightbox-close" type="button" aria-label="Close figure viewer" data-lightbox-close>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+        </button>
+      </div>
+    </dialog>
   </body>
 </html>
